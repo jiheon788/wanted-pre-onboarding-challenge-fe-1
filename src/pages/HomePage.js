@@ -15,7 +15,11 @@ const HomePage = () => {
           navigate('/auth');
         }}
       >Auth</button>
-      <button>Todo List</button>
+      <button
+      onClick={() => {
+        console.log(localStorage.getItem("token"))
+      }}
+      >Todo List</button>
 
     </div>
     </>
