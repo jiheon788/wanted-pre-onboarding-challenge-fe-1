@@ -15,8 +15,7 @@ const AuthPage = () => {
   }, [])
 
   return (
-    <div className="wrapper">
-      <div className="">
+    <div className="wrapper flex-center">
         {
           isSignIn ? (
             <SignInForm
@@ -28,7 +27,6 @@ const AuthPage = () => {
             />
           )
         }
-      </div>
     </div>
   )
 }

@@ -25,47 +25,38 @@ const SignInForm = ({setIsSignIn}) => {
         alert(response.data.message);
         localStorage.setItem('token', response.data.token);
         navigate('/');
+      }).catch(error => {
+        alert(error.response.data.details);
       })
     }
     return;
   }
   return (
-    <>
-    <h1>로그인</h1>
-
     <form className="login-container">
-      <div>
-        <label htmlFor="email" className="form-label"></label>
-        <input
-          id="email"
-          name="email"
-          type="text"
-          placeholder="이메일"
-          value={signInData.email}
-          onChange={onChangeSignInData}
-          className=" w-100"
-        />
-      </div>
-      <div>
-        <label htmlFor="password" className="form-label"></label>
-        <input
-          type="password"
-          placeholder="패스워드"
-          autoComplete="off"
-          name="password"
-          id="password"
-          value={signInData.password}
-          onChange={onChangeSignInData}
-          className=" w-100"
-        />
-      </div>
+      <input
+        id="email"
+        name="email"
+        type="text"
+        placeholder="이메일"
+        value={signInData.email}
+        onChange={onChangeSignInData}
+      />
+      <input
+        type="password"
+        placeholder="패스워드"
+        autoComplete="off"
+        name="password"
+        id="password"
+        value={signInData.password}
+        onChange={onChangeSignInData}
+      />
 
       <button 
         type="button" 
         onClick={()=>{
           onClickSignInBtn();
         }}
-        className="mb-20 mt-20 primary-btn btn-big w-100"
+        className="primary-btn w-100"
       >
         로그인
       </button>
@@ -80,7 +71,6 @@ const SignInForm = ({setIsSignIn}) => {
         </span>
       </p>
     </form>
-    </>
   )
 }
 

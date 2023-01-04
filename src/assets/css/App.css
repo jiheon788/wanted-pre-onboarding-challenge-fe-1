@@ -18,9 +18,25 @@ body {
   border-radius: 20px;
   box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
   color: #232323;
-  width: 450px;
   min-height: 600px;
   padding: 30px 25px;
+  width: 450px;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
 }
 
 input {
@@ -28,21 +44,35 @@ input {
   width: 100%;
   padding: 10px 10px;
   background: rgba(255, 255, 255, 0.75);
-  color: #333;
+  color: #232323;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
 }
 
+input:focus {
+  outline: 2.5px solid rgba(215, 40, 128, 0.4);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+  -webkit-transition: background-color 9999s ease-out;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset !important;
+  -webkit-text-fill-color: #232323 !important;
+}
+
 .w-100 {
   width: 100%;
 }
+
 .primary-btn {
-  backdrop-filter: blur(5.5px);
   background-color: #d72880;
   border: none;
   cursor: pointer;
-  padding: 15px 20px;
+  padding: 10px 20px;
   border-radius: 10px;
   border: none;
   font-size: 18px;
@@ -50,9 +80,28 @@ input {
   color: #fff;
 }
 
-.login-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 100%;
+.primary-btn:hover,
+.primary-btn:focus {
+  box-shadow: 0px 0px 0px 5px rgba(215, 40, 128, 0.4);
+}
+
+.icon {
+  cursor: pointer;
+  font-weight: bold;
+  color: #232323;
+  font-size: 35px;
+  transition: all 0.4s;
+}
+.icon:hover {
+  color: #d72880;
+}
+
+strong {
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+strong:hover {
+  color: #d72880;
+  text-decoration: underline;
 }

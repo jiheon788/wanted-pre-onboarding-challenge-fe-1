@@ -14,36 +14,24 @@ const HomePage = () => {
   return (
     <>
     <div className="wrapper">
-      <h1>To-Do List</h1>
 
-      {
-        localStorage.getItem('token') ? (
-          <button
-            type="button"
-            className="primary-btn w-100"
-            onClick={() => {
-              localStorage.removeItem("token");
-              window.location.reload();
-            }}
-          >로그아웃
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="primary-btn w-100"
-            onClick={() => {
-              navigate('/auth');
-            }}
-          >로그인
-          </button>
-        )
-      }
-      <button
-        type="button"
+    <div>
+      <span 
         onClick={() => {
-          console.log(localStorage.getItem("token"))
+          localStorage.removeItem("token");
+          window.location.reload();
         }}
-      >Todo List</button>
+        class="material-symbols-outlined icon">
+        logout
+      </span>
+    </div>
+
+    <input />
+    <span class="material-symbols-outlined icon">
+      add
+    </span>
+      
+      
 
     </div>
     </>
