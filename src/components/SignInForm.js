@@ -40,6 +40,7 @@ const SignInForm = ({setIsSignIn}) => {
         placeholder="이메일"
         value={signInData.email}
         onChange={onChangeSignInData}
+        className="w-100"
       />
       <input
         type="password"
@@ -49,6 +50,7 @@ const SignInForm = ({setIsSignIn}) => {
         id="password"
         value={signInData.password}
         onChange={onChangeSignInData}
+        className="w-100"
       />
 
       <button 

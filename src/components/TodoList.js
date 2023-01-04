@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTodos } from "../lib/apis/todos";
+import { calcTime } from "../lib/util";
 const TodoList = () => {
   const [todos, setTodos] = useState([]);
 
@@ -16,9 +17,13 @@ const TodoList = () => {
       todos.map((todo, index) => (
         <li 
           key={todo.id}
-        
         >
-          {todo.title} | 
+          <div className="add-box">
+            <input type="checkbox" /> 
+            <span>{todo.title}</span>
+            <div className="time-stamp">{calcTime(todo.updatedAt)}</div>
+
+          </div>
         </li>
       ))
     }

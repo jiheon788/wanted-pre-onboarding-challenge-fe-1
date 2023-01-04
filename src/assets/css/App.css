@@ -42,7 +42,6 @@ body {
 textarea,
 input {
   border: 1px solid rgba(255, 255, 255, 0.01);
-  width: 100%;
   padding: 14px 10px;
   background: rgba(255, 255, 255, 0.75);
   color: #232323;
@@ -104,11 +103,6 @@ strong:hover {
   text-decoration: underline;
 }
 
-.add-box {
-  display: flex;
-  align-items: center;
-}
-
 .container {
   display: flex;
   gap: 10px;
@@ -139,4 +133,34 @@ strong:hover {
 
 .tool-box span:hover {
   color: #d72880;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  width: 100%;
+}
+
+li {
+  padding: 20px 0;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.add-box {
+  display: flex;
+  /* align-items: flex-start;
+  justify-content: flex-start; */
+}
+
+.time-stamp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 4px;
+  font-size: 12px;
+  background-color: #999;
+  color: white;
+  border-radius: 5px;
 }

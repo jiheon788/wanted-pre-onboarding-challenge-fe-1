@@ -49,7 +49,7 @@ const SignUpForm = ({setIsSignIn}) => {
         placeholder="패스워드"
         value={signUpData.password}
         onChange={onChangeSignUpData}
-        className=" w-100"
+        className="w-100"
       />
 
       <input
@@ -60,7 +60,7 @@ const SignUpForm = ({setIsSignIn}) => {
         placeholder="패스워드 확인"
         value={signUpData.rePassword}
         onChange={onChangeSignUpData}
-        className=" w-100"
+        className="w-100"
       />
       
       <button 
