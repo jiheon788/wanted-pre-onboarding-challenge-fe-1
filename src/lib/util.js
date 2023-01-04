@@ -27,5 +27,11 @@ export const isValidateAuthData = (data, isSignIn) => {
     return false;
   }
 
+  if (data.password.length < 8) {
+    alert("패스워드는 8자 이상으로 입력해주세요.");
+    $("#password").focus();
+    return false;
+  }
+
   return true;
 }
