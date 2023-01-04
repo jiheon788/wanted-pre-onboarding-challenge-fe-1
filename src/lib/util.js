@@ -9,6 +9,12 @@ export const isValidateAuthData = (data, isSignIn) => {
     return false;
   }
 
+  if (data.email.match(rEmailExp) === null) {
+    alert("이메일 형식이 아닙니다");
+    $("#email").focus();
+    return false;
+  }
+
   
 
   return true;
