@@ -8,17 +8,32 @@ const HomePage = () => {
     <div className="wrapper">
       <h1>To-Do List</h1>
 
+      {
+        localStorage.getItem('token') ? (
+          <button
+            type="button"
+            className="primary-btn w-100"
+            onClick={() => {
+              localStorage.removeItem("token");
+            }}
+          >로그아웃
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="primary-btn w-100"
+            onClick={() => {
+              navigate('/auth');
+            }}
+          >로그인
+          </button>
+        )
+      }
       <button
         type="button"
-        className="primary-btn w-100"
         onClick={() => {
-          navigate('/auth');
+          console.log(localStorage.getItem("token"))
         }}
-      >Auth</button>
-      <button
-      onClick={() => {
-        console.log(localStorage.getItem("token"))
-      }}
       >Todo List</button>
 
     </div>

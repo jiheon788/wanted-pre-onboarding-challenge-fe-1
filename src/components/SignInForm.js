@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postSignInData } from "../lib/apis/auth";
-
+import { isValidateAuthData } from "../lib/util";
 const SignInForm = ({setIsSignIn}) => {
   const navigate = useNavigate();
   const [signInData, setSignInData] = useState({
@@ -17,14 +17,17 @@ const SignInForm = ({setIsSignIn}) => {
   };
 
   const onClickSignInBtn = () => {
-    postSignInData(
-      signInData.email,
-      signInData.password
-    ).then(response => {
-      alert(response.data.message);
-      localStorage.setItem('token', response.data.token);
-      navigate('/');
-    })
+    if (isValidateAuthData(signInData)) {
+      postSignInData(
+        signInData.email,
+        signInData.password
+      ).then(response => {
+        alert(response.data.message);
+        localStorage.setItem('token', response.data.token);
+        navigate('/');
+      })
+    }
+    return;
   }
   return (
     <>

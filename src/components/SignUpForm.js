@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { postSignUpData } from "../lib/apis/auth";
+import { isValidateAuthData } from "../lib/util";
 
 const SignUpForm = ({setIsSignIn}) => {
   const [signUpData, setSignUpData] = useState({
@@ -16,13 +17,15 @@ const SignUpForm = ({setIsSignIn}) => {
   };
 
   const onClickSignUpBtn = () => {
-    postSignUpData(
-      signUpData.email,
-      signUpData.password
-    ).then(response => {
-      alert(response.data.message);
-      setIsSignIn(true);
-    })
+    if (isValidateAuthData(signUpData, true)) {
+      postSignUpData(
+        signUpData.email,
+        signUpData.password
+      ).then(response => {
+        alert(response.data.message);
+        setIsSignIn(true);
+      })
+    }
   }
 
 
