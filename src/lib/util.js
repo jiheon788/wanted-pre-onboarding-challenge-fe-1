@@ -15,6 +15,12 @@ export const isValidateAuthData = (data, isSignIn) => {
     return false;
   }
 
+  if (data.password === "") {
+    alert("패스워드를 입력해주세요.");
+    $("#password").focus();
+    return false;
+  }
+
   
 
   return true;
