@@ -21,6 +21,7 @@ const SignUpForm = ({setIsSignIn}) => {
       signUpData.password
     ).then(response => {
       alert(response.data.message);
+      setIsSignIn(true);
     })
   }
 
