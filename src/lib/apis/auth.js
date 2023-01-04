@@ -10,7 +10,7 @@ export const postSignUpData = async (email, password) => {
   return await apiClient({
     method: "post",
     url: `/users/create`,
-    params: {
+    data: {
       email,
       password
     }
@@ -27,7 +27,7 @@ export const postSignInData = async (email, password) => {
   return await apiClient({
     method: "post",
     url: `/users/login`,
-    params: {
+    data: {
       email,
       password
     }

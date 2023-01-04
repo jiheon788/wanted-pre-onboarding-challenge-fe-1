@@ -49,3 +49,10 @@ input {
   transition: all 0.4s;
   color: #fff;
 }
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}

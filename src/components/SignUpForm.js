@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { postSignUpData } from "../lib/apis/auth";
+import { isValidateAuthData } from "../lib/util";
 
 const SignUpForm = ({setIsSignIn}) => {
   const [signUpData, setSignUpData] = useState({
@@ -16,65 +17,71 @@ const SignUpForm = ({setIsSignIn}) => {
   };
 
   const onClickSignUpBtn = () => {
-    postSignUpData(
-      signUpData.email,
-      signUpData.password
-    ).then(response => {
-    }).catch(error => {
-
-    })
+    if (isValidateAuthData(signUpData, true)) {
+      postSignUpData(
+        signUpData.email,
+        signUpData.password
+      ).then(response => {
+        alert(response.data.message);
+        setIsSignIn(true);
+      })
+    }
   }
-
 
   return (
     <>
     <h1>회원가입</h1>
-    <form className="flex-col-box-center">
+    <form className="login-container">
 
+      <div>
         <label htmlFor="email" className="form-label"></label>
         <input
           id="email"
           name="email"
           type="email"
-          placeholder="Email"
+          placeholder="이메일"
           value={signUpData.email}
           onChange={onChangeSignUpData}
           className=" w-100"
         />
-
+      </div>
+      <div>
         <label htmlFor="password" className="form-label"></label>
         <input
           id="password"
           name="password"
           type="password"
           autoComplete="off"
-          placeholder="Password"
+          placeholder="패스워드"
           value={signUpData.password}
           onChange={onChangeSignUpData}
           className=" w-100"
         />
+      </div>
 
+      <div>
         <label htmlFor="password" className="form-label"></label>
         <input
           id="rePassword"
           name="rePassword"
           type="password"
           autoComplete="off"
-          placeholder="re-Password"
+          placeholder="패스워드 확인"
           value={signUpData.rePassword}
           onChange={onChangeSignUpData}
           className=" w-100"
         />
+      </div>
         
-        <button 
-          type="button" 
-          onClick={()=>{
-            onClickSignUpBtn();
-          }}
-          className="mt-20 mb-20 primary-btn btn-big w-100"
-        >
-          Sign Up
-        </button>
+      <button 
+        type="button" 
+        onClick={()=>{
+          onClickSignUpBtn();
+        }}
+        className="primary-btn w-100"
+      >
+        회원가입
+      </button>
       <p>
         Already registered?{" "}
         <span>
