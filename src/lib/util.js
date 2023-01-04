@@ -21,7 +21,11 @@ export const isValidateAuthData = (data, isSignIn) => {
     return false;
   }
 
-  
+  if (isSignIn && data.password !== data.rePassword) {
+    alert("패스워드가 다릅니다.");
+    $("#password").focus();
+    return false;
+  }
 
   return true;
 }
