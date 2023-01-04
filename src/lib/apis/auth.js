@@ -10,7 +10,8 @@ export const postSignUpData = async (email, password) => {
   return await apiClient({
     method: "post",
     url: `/users/create`,
-    params: {
+  
+    data: {
       email,
       password
     }

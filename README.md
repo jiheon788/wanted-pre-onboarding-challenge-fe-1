@@ -1,7 +1,7 @@
 # 원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제 / fe
 
 - [원티드 프리온보딩 챌린지 프론트엔드 코스 과제](https://www.wanted.co.kr/events/pre_challenge_fe_5)
-- [API Repo](https://github.com/jiheon788/wanted-pre-onboarding-challenge-fe-1-api)
+- [API 저장소](https://github.com/jiheon788/wanted-pre-onboarding-challenge-fe-1-api)
 
 - 제출자 이름: 박지헌
 - 제출자 이메일: [jiheon788@ajou.ac.kr]()

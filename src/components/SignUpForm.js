@@ -20,8 +20,7 @@ const SignUpForm = ({setIsSignIn}) => {
       signUpData.email,
       signUpData.password
     ).then(response => {
-    }).catch(error => {
-
+      alert(response.data.message);
     })
   }
 
