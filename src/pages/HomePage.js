@@ -15,6 +15,7 @@ const HomePage = () => {
             className="primary-btn w-100"
             onClick={() => {
               localStorage.removeItem("token");
+              window.location.reload();
             }}
           >로그아웃
           </button>
