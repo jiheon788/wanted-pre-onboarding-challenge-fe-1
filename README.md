@@ -1,13 +1,13 @@
 # 원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제 / fe
 
 - [원티드 프리온보딩 챌린지 프론트엔드 코스 과제](https://www.wanted.co.kr/events/pre_challenge_fe_5)
-- [API 저장소](https://github.com/jiheon788/wanted-pre-onboarding-challenge-fe-1-api)
+- [API 저장소](https://github.com/starkoora/wanted-pre-onboarding-challenge-fe-1-api)
+- 관련 기술: `React`, `Jquery`
+- Todos: `React Query`, `Typesctipt`, `Styled-component`
 
-- 제출자 이름: 박지헌
-- 제출자 이메일: [jiheon788@ajou.ac.kr]()
-- 제출일: 2023.01
+## 🚀 기능 목록
 
-## Assignment 1 - Login / SignUp
+### Assignment 1 - Login / SignUp
 
 - /auth 경로에 로그인 / 회원가입 기능을 개발합니다
   - 로그인, 회원가입을 별도의 경로로 분리해도 무방합니다
@@ -25,12 +25,12 @@
   - [x] 로그아웃
   - [x] 어떤 경우든 토큰이 유효하지 않다면 사용자에게 알리고 로그인 페이지로 리다이렉트 시켜주세요
 
-## Assignment 2 - Todo List
+### Assignment 2 - Todo List
 
 - Todo List API를 호출하여 Todo List CRUD 기능을 구현해주세요
   - [ ] 목록 / 상세 영역으로 나누어 구현해주세요
-  - [ ] Todo 목록을 볼 수 있습니다.
-  - [ ] Todo 추가 버튼을 클릭하면 할 일이 추가 됩니다.
+  - [x] Todo 목록을 볼 수 있습니다.
+  - [x] Todo 추가 버튼을 클릭하면 할 일이 추가 됩니다.
   - [ ] Todo 수정 버튼을 클릭하면 수정 모드를 활성화하고, 수정 내용을 제출하거나 취소할 수 있습니다.
   - [ ] Todo 삭제 버튼을 클릭하면 해당 Todo를 삭제할 수 있습니다.
 - 한 화면 내에서 Todo List와 개별 Todo의 상세를 확인할 수 있도록 해주세요.
