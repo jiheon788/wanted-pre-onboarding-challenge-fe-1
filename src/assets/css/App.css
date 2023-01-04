@@ -42,7 +42,7 @@ body {
 input {
   border: 1px solid rgba(255, 255, 255, 0.01);
   width: 100%;
-  padding: 10px 10px;
+  padding: 14px 10px;
   background: rgba(255, 255, 255, 0.75);
   color: #232323;
   border-radius: 5px;
@@ -104,4 +104,9 @@ strong {
 strong:hover {
   color: #d72880;
   text-decoration: underline;
+}
+
+.add-box {
+  display: flex;
+  align-items: center;
 }

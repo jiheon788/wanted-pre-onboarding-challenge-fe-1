@@ -15,21 +15,21 @@ const HomePage = () => {
     <>
     <div className="wrapper">
 
-    <div>
-      <span 
-        onClick={() => {
-          localStorage.removeItem("token");
-          window.location.reload();
-        }}
-        class="material-symbols-outlined icon">
-        logout
+    <span 
+      onClick={() => {
+        localStorage.removeItem("token");
+        window.location.reload();
+      }}
+      class="material-symbols-outlined icon">
+      logout
+    </span>
+    
+    <div className="add-box">
+      <input />
+      <span class="material-symbols-outlined icon">
+        add
       </span>
     </div>
-
-    <input />
-    <span class="material-symbols-outlined icon">
-      add
-    </span>
       
       
 
