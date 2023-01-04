@@ -33,21 +33,24 @@ const SignInForm = ({setIsSignIn}) => {
     <>
     <h1>로그인</h1>
 
-    <form className="flex-col-box-center">
+    <form className="login-container">
+      <div>
         <label htmlFor="email" className="form-label"></label>
         <input
           id="email"
           name="email"
           type="text"
-          placeholder="Email"
+          placeholder="이메일"
           value={signInData.email}
           onChange={onChangeSignInData}
           className=" w-100"
         />
+      </div>
+      <div>
         <label htmlFor="password" className="form-label"></label>
         <input
           type="password"
-          placeholder="Password"
+          placeholder="패스워드"
           autoComplete="off"
           name="password"
           id="password"
@@ -55,26 +58,28 @@ const SignInForm = ({setIsSignIn}) => {
           onChange={onChangeSignInData}
           className=" w-100"
         />
-        <button 
-          type="button" 
-          onClick={()=>{
-            onClickSignInBtn();
-          }}
-          className="mb-20 mt-20 primary-btn btn-big w-100"
-        >
-          Login
-        </button>
-        <p>
-          Not registered?{"  "}
-          <span>
-            <strong
-              className="c-p"
-              onClick={()=>{
-                setIsSignIn(false)
-              }}>Create an Account</strong>
-          </span>
-        </p>
-      </form>
+      </div>
+
+      <button 
+        type="button" 
+        onClick={()=>{
+          onClickSignInBtn();
+        }}
+        className="mb-20 mt-20 primary-btn btn-big w-100"
+      >
+        로그인
+      </button>
+      <p>
+        Not registered?{"  "}
+        <span>
+          <strong
+            className="c-p"
+            onClick={()=>{
+              setIsSignIn(false)
+            }}>Create an Account</strong>
+        </span>
+      </p>
+    </form>
     </>
   )
 }

@@ -1,7 +1,15 @@
 import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+
 
 const HomePage = () => {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!(localStorage.getItem("token"))) {
+      navigate('/auth');
+    }
+  }, [])
 
   return (
     <>
