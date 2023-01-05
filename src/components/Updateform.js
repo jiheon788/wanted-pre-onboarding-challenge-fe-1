@@ -21,7 +21,7 @@ const UpdateForm = ({
     updateTodo(
       localStorage.getItem('token'),
       todos[index].title,
-      todos[index].token,
+      todos[index].content,
       todos[index].id,
     );
 

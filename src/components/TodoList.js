@@ -7,15 +7,15 @@ const TodoList = ({
   todos,
   setIndex
 }) => {
-  $(document).ready(function() {
-    $("input:checkbox").on('click', function() {
-          if ( $(this).prop('checked') ) {
-            $(this).parent().parent().addClass("selected");
-          } else {
-            $(this).parent().parent().removeClass("selected");
-          }
-        });
-    });
+  // $(document).ready(function() {
+  //   $("input:checkbox").on('click', function() {
+  //         if ( $(this).prop('checked') ) {
+  //           $(this).parent().addClass("selected");
+  //         } else {
+  //           $(this).parent().removeClass("selected");
+  //         }
+  //       });
+  //   });
   
   return (
     <ul className="todos-section">
@@ -29,7 +29,7 @@ const TodoList = ({
         >
             <div className="check-label">
             <input type="checkbox" id="test-1" />
-            <label htmlFor="test-1">{todo.title}</label>
+            <label htmlFor="">{todo.title}</label>
             </div>
             <div className="time-stamp">{calcTime(todo.updatedAt)}</div>
 
