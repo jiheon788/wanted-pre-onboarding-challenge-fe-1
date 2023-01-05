@@ -15,7 +15,10 @@ const AuthPage = () => {
   }, [])
 
   return (
-    <div className="wrapper flex-center">
+    <div className="container">
+      <div className="banner-section">
+        배너
+      </div>
         {
           isSignIn ? (
             <SignInForm

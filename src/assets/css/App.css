@@ -11,26 +11,39 @@ body {
   height: inherit;
 }
 
-.wrapper {
+/* 스크롤바의 너비 */
+.todos-section::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* 스크롤바의 색상 */
+.todos-section::-webkit-scrollbar-thumb {
+  background: #d72880;
+  border-radius: 16px;
+}
+
+/*스크롤바 뒷 배경 색상*/
+.todos-section::-webkit-scrollbar-track {
+  background: rgba(215, 40, 128, 0.08);
+  border-radius: 16px;
+}
+
+.container {
   backdrop-filter: blur(5.5px);
   background-color: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.01);
   border-radius: 20px;
   box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
   color: #232323;
-  min-height: 600px;
+  height: 600px;
   padding: 30px 25px;
-  width: 450px;
+  width: 800px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-.flex-center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.login-container {
+.auth-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,7 +56,8 @@ textarea,
 input {
   border: 1px solid rgba(255, 255, 255, 0.01);
   padding: 14px 10px;
-  background: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(5.5px);
   color: #232323;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
@@ -103,7 +117,7 @@ strong:hover {
   text-decoration: underline;
 }
 
-.container {
+.main-separator {
   display: flex;
   gap: 10px;
 }
@@ -135,23 +149,22 @@ strong:hover {
   color: #d72880;
 }
 
-ul {
+.todos-section {
   display: flex;
   flex-direction: column;
   font-size: 18px;
   width: 100%;
+  overflow-y: scroll;
 }
 
 li {
-  padding: 20px 0;
+  padding: 20px 8px;
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.add-box {
   display: flex;
-  /* align-items: flex-start;
-  justify-content: flex-start; */
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
 .time-stamp {
@@ -159,8 +172,16 @@ li {
   justify-content: center;
   align-items: center;
   padding: 5px 4px;
-  font-size: 12px;
+  font-size: 8px;
   background-color: #999;
   color: white;
   border-radius: 5px;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.content {
+  font-size: 16px;
 }

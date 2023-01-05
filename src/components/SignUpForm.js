@@ -31,7 +31,7 @@ const SignUpForm = ({setIsSignIn}) => {
   }
 
   return (
-    <form className="login-container">
+    <form className="auth-section">
       <input
         id="email"
         name="email"

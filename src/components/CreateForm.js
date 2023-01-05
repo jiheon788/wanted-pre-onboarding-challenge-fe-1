@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { createTodo } from "../lib/apis/todos";
-const CreateForm = ({setIsCreate}) => {
+const CreateForm = ({
+  setIsCreate,
+  loadTodos
+}) => {
   const [todoData, setTodoData] = useState({
     title: "",
     content: "",
@@ -19,11 +22,11 @@ const CreateForm = ({setIsCreate}) => {
       todoData.title,
       todoData.content
     );
-
+    loadTodos();
     setIsCreate(false);
   }
   return (
-    <form className="login-container">
+    <form className="auth-section">
       <input
         id="title"
         name="title"
