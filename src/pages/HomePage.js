@@ -1,24 +1,19 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import CreateForm from "../components/CreateForm"
+import UpdateForm from "../components/Updateform"
 import DetailForm from "../components/DetailForm"
 import TodoList from "../components/TodoList"
 import { getTodos, deleteTodo } from "../lib/apis/todos";
 const HomePage = () => {
   const navigate = useNavigate()
   const [isCreate, setIsCreate] = useState(false)
+  const [isUpdate, setIsUpdate] = useState(false)
 
   const [todos, setTodos] = useState([]);
   const [index, setIndex] = useState(0);
-  const [todo, setTodo] = useState({
-    title: "",
-    content: "",
-  });
-
 
   useEffect(() => {
-    console.log(Boolean(todos[0]))
-
     if (!(localStorage.getItem("token"))) {
       navigate('/auth')
     } else {
@@ -26,28 +21,9 @@ const HomePage = () => {
     }
   }, [])
 
-
-  useEffect(() => {
-    if ((todos.length > 0)) {
-      setTodo({
-        title: todos[index].title,
-        content: todos[index].content,
-      })
-    }
-  }, [todos])
-
-  useEffect(() => {
-    if ((todos.length > 0)) {
-      setTodo({
-        title: todos[index].title,
-        content: todos[index].title,
-      })
-    }
-  }, [index])
-
   const loadTodos = () => {
     getTodos(localStorage.getItem("token")).then(response => {
-      setTodos(response.data.data);
+      setTodos(response.data.data.reverse());
     })
   }
 
@@ -55,12 +31,17 @@ const HomePage = () => {
     setIsCreate(!isCreate);
   }
 
+  const onClickUpdateBtn = () => {
+    setIsUpdate(!isUpdate);
+  }
+
   const onClickDeleteBtn = () => {
     deleteTodo(
       localStorage.getItem("token"),
       todos[index].id
-    ).then(response => {
+    ).then(_ => {
       loadTodos();
+      setIndex(0);
     })
   }
 
@@ -70,19 +51,38 @@ const HomePage = () => {
       localStorage.getItem("token") ? (
         <div className="main-separator">
           <div className="container">
-            
-
             {
               isCreate ? (
                 <CreateForm 
                   setIsCreate = {setIsCreate}
                   loadTodos = {loadTodos}
+                  setIndex = {setIndex}
                 />
               ) : (
-                <DetailForm 
-                  title = {todo.title}
-                  content = {todo.content}
-                />
+                <>
+                {
+                  isUpdate ? (
+                    <UpdateForm 
+                      todos ={todos}
+                      setTodos = {setTodos}
+                      index = {index}
+                      setIsUpdate = {setIsUpdate}
+                    />
+                  ) : (
+                    <>
+                    {
+                      todos.length > 0 ? (
+                        <DetailForm
+                        title = {todos[index].title}
+                        content = {todos[index].content}
+                        />
+                      ) : (<></>)
+                    }
+                    </>
+                  )
+                }
+                
+                </>
               )
             }
             <TodoList 
@@ -97,7 +97,7 @@ const HomePage = () => {
             {
               isCreate ? (
                 <span 
-                  class="material-symbols-outlined"
+                  className="material-symbols-outlined"
                   onClick={() => {
                     setIsCreate(false);
                   }}
@@ -106,7 +106,7 @@ const HomePage = () => {
                 </span>
               ) : (
                 <span 
-                  class="material-symbols-outlined"
+                className="material-symbols-outlined"
                   onClick={() => {
                     onClickAddBtn();
                   }}
@@ -116,11 +116,34 @@ const HomePage = () => {
               )
             }
 
+            {
+              isUpdate ? (
+                <span 
+                className="material-symbols-outlined"
+                  onClick={() => {
+                    setIsUpdate(false);
+                  }}
+                >
+                  close
+                </span>
+              ) : (
+                <span 
+                className="material-symbols-outlined"
+                  onClick={() => {
+                    onClickUpdateBtn();
+                  }}
+                >
+                  edit
+                </span>
+              )
+            }
+            
+
             <span 
               onClick={() => {
                 onClickDeleteBtn();
               }}
-              class="material-symbols-outlined">
+              className="material-symbols-outlined">
               delete
             </span>
 
@@ -129,7 +152,7 @@ const HomePage = () => {
                 localStorage.removeItem("token");
                 window.location.reload();
               }}
-              class="material-symbols-outlined">
+              className="material-symbols-outlined">
               logout
             </span>
           </div>

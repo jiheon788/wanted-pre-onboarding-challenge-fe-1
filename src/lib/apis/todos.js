@@ -63,7 +63,7 @@ export const createTodo = async (accessToken, title, content) => {
 export const updateTodo = async (accessToken, title, content, id) => {
   return await apiClient({
     method: "put",
-    url: `/todos`,
+    url: `/todos/${id}`,
     headers: {
       Authorization: accessToken
     },

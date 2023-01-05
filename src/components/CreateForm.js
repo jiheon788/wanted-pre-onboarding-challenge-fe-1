@@ -2,7 +2,8 @@ import { useState } from "react";
 import { createTodo } from "../lib/apis/todos";
 const CreateForm = ({
   setIsCreate,
-  loadTodos
+  loadTodos,
+  setIndex
 }) => {
   const [todoData, setTodoData] = useState({
     title: "",
@@ -23,6 +24,7 @@ const CreateForm = ({
       todoData.content
     );
     loadTodos();
+    setIndex(0);
     setIsCreate(false);
   }
   return (
