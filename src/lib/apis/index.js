@@ -6,6 +6,9 @@ export const apiClient = axios.create({
   baseURL: HOST,
 });
 
+/**
+ * 디버깅 코드
+ */
 apiClient.interceptors.response.use(
   function (response) {
     console.log("response success: ", response);

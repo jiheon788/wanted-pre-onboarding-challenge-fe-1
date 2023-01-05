@@ -15,8 +15,11 @@ const AuthPage = () => {
   }, [])
 
   return (
-    <div className="wrapper">
-      <div className="">
+    <div className="container">
+      <div className="banner-section">
+        <h1>To-do List</h1>
+        <p>로그인 후 이용 가능합니다.</p>
+      </div>
         {
           isSignIn ? (
             <SignInForm
@@ -28,7 +31,6 @@ const AuthPage = () => {
             />
           )
         }
-      </div>
     </div>
   )
 }
