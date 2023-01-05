@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import CreateForm from "../components/CreateForm"
 import DetailForm from "../components/DetailForm"
 import TodoList from "../components/TodoList"
-import { getTodos } from "../lib/apis/todos";
+import { getTodos, deleteTodo } from "../lib/apis/todos";
 const HomePage = () => {
   const navigate = useNavigate()
   const [isCreate, setIsCreate] = useState(false)
@@ -53,6 +53,15 @@ const HomePage = () => {
 
   const onClickAddBtn = () => {
     setIsCreate(!isCreate);
+  }
+
+  const onClickDeleteBtn = () => {
+    deleteTodo(
+      localStorage.getItem("token"),
+      todos[index].id
+    ).then(response => {
+      loadTodos();
+    })
   }
 
   return (
@@ -106,6 +115,14 @@ const HomePage = () => {
                 </span>
               )
             }
+
+            <span 
+              onClick={() => {
+                onClickDeleteBtn();
+              }}
+              class="material-symbols-outlined">
+              delete
+            </span>
 
             <span 
               onClick={() => {
