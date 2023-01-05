@@ -1,9 +1,22 @@
-import { useEffect, useState } from "react";
 import { calcTime } from "../lib/util";
+import $ from 'jquery'
+import { useEffect } from "react";
+
+
 const TodoList = ({
   todos,
   setIndex
 }) => {
+  $(document).ready(function() {
+    $("input:checkbox").on('click', function() {
+          if ( $(this).prop('checked') ) {
+            $(this).parent().parent().addClass("selected");
+          } else {
+            $(this).parent().parent().removeClass("selected");
+          }
+        });
+    });
+  
   return (
     <ul className="todos-section">
     {
@@ -14,9 +27,9 @@ const TodoList = ({
             setIndex(index)
           }}
         >
-            <div>
-            <input type="checkbox" /> 
-            <span>{todo.title}</span>
+            <div className="check-label">
+            <input type="checkbox" id="test-1" />
+            <label htmlFor="test-1">{todo.title}</label>
             </div>
             <div className="time-stamp">{calcTime(todo.updatedAt)}</div>
 

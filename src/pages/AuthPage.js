@@ -17,7 +17,8 @@ const AuthPage = () => {
   return (
     <div className="container">
       <div className="banner-section">
-        배너
+        <h1>To-do List</h1>
+        <p>로그인 후 이용 가능합니다.</p>
       </div>
         {
           isSignIn ? (
