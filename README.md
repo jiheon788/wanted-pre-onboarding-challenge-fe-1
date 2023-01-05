@@ -1,5 +1,7 @@
 # 원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제 / fe
 
+<img src="https://user-images.githubusercontent.com/90181028/210785620-7b11cce1-7bf9-4875-a0c7-64f5ec380973.gif" width="90%" />
+
 <div>
 <img src="https://user-images.githubusercontent.com/90181028/210776041-2b250176-f590-48bb-bebe-6ac2d98ee88a.png" width="45%" />
 <img src="https://user-images.githubusercontent.com/90181028/210776048-4adf9138-e09a-4211-971f-4cd93fe8471c.png" width="45%" />
