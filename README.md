@@ -1,19 +1,13 @@
-# 원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제 / fe
+# To-do List
 
 <img src="https://user-images.githubusercontent.com/90181028/210785620-7b11cce1-7bf9-4875-a0c7-64f5ec380973.gif" width="90%" />
 
-<div>
-<img src="https://user-images.githubusercontent.com/90181028/210776041-2b250176-f590-48bb-bebe-6ac2d98ee88a.png" width="45%" />
-<img src="https://user-images.githubusercontent.com/90181028/210776048-4adf9138-e09a-4211-971f-4cd93fe8471c.png" width="45%" />
+## 📢 Introduction
 
-</div>
-
-- [원티드 프리온보딩 챌린지 프론트엔드 코스 과제](https://www.wanted.co.kr/events/pre_challenge_fe_5)
+- [원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제](https://www.wanted.co.kr/events/pre_challenge_fe_5)
 - [API 저장소](https://github.com/starkoora/wanted-pre-onboarding-challenge-fe-1-api)
-- 관련 기술: `React`, `Jquery`
-- Todos: `React Query`, `Typesctipt`, `Styled-component`
 
-## 🚀 기능 목록
+## ✨ Features
 
 ### Assignment 1 - Login / SignUp
 
@@ -50,3 +44,14 @@
   - [x] 수정되는 Todo의 내용이 목록에서도 실시간으로 반영되어야 합니다
 
 - [x] 체크박스
+
+## 🛠 Tech Stack
+
+`React`
+
+- todos: `React Query`, `Typesctipt`
+
+## 📷 Screenshots
+
+<img src="https://user-images.githubusercontent.com/90181028/210776041-2b250176-f590-48bb-bebe-6ac2d98ee88a.png" width="80%" />
+<img src="https://user-images.githubusercontent.com/90181028/210776048-4adf9138-e09a-4211-971f-4cd93fe8471c.png" width="80%" />
