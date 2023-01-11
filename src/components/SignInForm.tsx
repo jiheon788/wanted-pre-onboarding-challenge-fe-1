@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postSignInData } from "../lib/apis/auth";
-import { isValidateAuthData } from "../lib/util";
-const SignInForm = ({setIsSignIn}) => {
+import { isValidateAuthData } from "../lib/utils";
+
+interface ISignInFormProps {
+  setIsSignIn: any;
+}
+
+const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
   const navigate = useNavigate();
   const [signInData, setSignInData] = useState({
     email: "",
     password: "",
   });
 
-  const onChangeSignInData = (event) => {
+  const onChangeSignInData = (event: any) => {
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,
@@ -18,19 +23,17 @@ const SignInForm = ({setIsSignIn}) => {
 
   const onClickSignInBtn = () => {
     if (isValidateAuthData(signInData)) {
-      postSignInData(
-        signInData.email,
-        signInData.password
-      ).then(response => {
-        alert(response.data.message);
-        localStorage.setItem('token', response.data.token);
-        navigate('/');
-      }).catch(error => {
-        alert(error.response.data.details);
-      })
+      postSignInData(signInData.email, signInData.password)
+        .then((response) => {
+          alert(response.data.message);
+          localStorage.setItem("token", response.data.token);
+          navigate("/");
+        })
+        .catch((error) => {
+          alert(error.response.data.details);
+        });
     }
-    return;
-  }
+  };
   return (
     <form className="auth-section">
       <input
@@ -53,9 +56,9 @@ const SignInForm = ({setIsSignIn}) => {
         className="w-100"
       />
 
-      <button 
-        type="button" 
-        onClick={()=>{
+      <button
+        type="button"
+        onClick={() => {
           onClickSignInBtn();
         }}
         className="primary-btn w-100"
@@ -67,13 +70,16 @@ const SignInForm = ({setIsSignIn}) => {
         <span>
           <strong
             className="c-p"
-            onClick={()=>{
-              setIsSignIn(false)
-            }}>Create an Account</strong>
+            onClick={() => {
+              setIsSignIn(false);
+            }}
+          >
+            Create an Account
+          </strong>
         </span>
       </p>
     </form>
-  )
-}
+  );
+};
 
-export default SignInForm
+export default SignInForm;

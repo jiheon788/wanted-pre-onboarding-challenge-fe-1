@@ -1,13 +1,20 @@
 import { updateTodo } from "../lib/apis/todos";
+
+interface IUpdateFormProps {
+  todos: any;
+  setTodos: any;
+  index: any;
+  setIsUpdate: any;
+}
+
 const UpdateForm = ({
   todos,
   setTodos,
   index,
-  setIsUpdate
-}) => {
-
-  const onChangeFormData = (name, index) => (event) => {
-    let newArr = todos.map((item, i) => {
+  setIsUpdate,
+}: IUpdateFormProps) => {
+  const onChangeFormData = (name: string, index: number) => (event: any) => {
+    let newArr = todos.map((item: any, i: number) => {
       if (index == i) {
         return { ...item, [name]: event.target.value };
       } else {
@@ -19,15 +26,14 @@ const UpdateForm = ({
 
   const onClickSubmitBtn = () => {
     updateTodo(
-      localStorage.getItem('token'),
+      localStorage.getItem("token"),
       todos[index].title,
       todos[index].content,
-      todos[index].id,
+      todos[index].id
     );
 
     setIsUpdate(false);
-  }
-  
+  };
 
   return (
     <form className="auth-section">
@@ -43,15 +49,14 @@ const UpdateForm = ({
       <textarea
         id="content"
         name="content"
-        type="content"
         value={todos[index].content}
         onChange={onChangeFormData("content", index)}
         className=" w-100"
       />
 
-      <button 
-        type="button" 
-        onClick={()=>{
+      <button
+        type="button"
+        onClick={() => {
           onClickSubmitBtn();
         }}
         className="primary-btn w-100"
@@ -59,7 +64,7 @@ const UpdateForm = ({
         수정하기
       </button>
     </form>
-  )
-}
+  );
+};
 
 export default UpdateForm;

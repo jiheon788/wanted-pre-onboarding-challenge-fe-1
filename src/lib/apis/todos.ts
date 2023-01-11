@@ -5,7 +5,7 @@ import { apiClient } from ".";
  * @param {*} accessToken 
  * @returns 
  */
-export const getTodos = async (accessToken) => {
+export const getTodos = async (accessToken: any) => {
   return await apiClient({
     method: "get",
     url: `/todos`,
@@ -21,7 +21,7 @@ export const getTodos = async (accessToken) => {
  * @param {*} id 
  * @returns 
  */
-export const getTodoById = async (accessToken, id) => {
+export const getTodoById = async (accessToken: any, id: string) => {
   return await apiClient({
     method: "get",
     url: `/todos/${id}`,
@@ -38,7 +38,7 @@ export const getTodoById = async (accessToken, id) => {
  * @param {*} content 
  * @returns 
  */
-export const createTodo = async (accessToken, title, content) => {
+export const createTodo = async (accessToken: any, title: string, content: string) => {
   return await apiClient({
     method: "post",
     url: `/todos`,
@@ -60,7 +60,7 @@ export const createTodo = async (accessToken, title, content) => {
  * @param {*} id 
  * @returns 
  */
-export const updateTodo = async (accessToken, title, content, id) => {
+export const updateTodo = async (accessToken: any, title: string, content: string, id: string) => {
   return await apiClient({
     method: "put",
     url: `/todos/${id}`,
@@ -80,7 +80,7 @@ export const updateTodo = async (accessToken, title, content, id) => {
  * @param {*} id 
  * @returns 
  */
-export const deleteTodo = async (accessToken, id) => {
+export const deleteTodo = async (accessToken: any, id: string) => {
   return await apiClient({
     method: "delete",
     url: `/todos/${id}`,
