@@ -6,7 +6,7 @@ import { apiClient } from ".";
  * @param {string} password 
  * @returns 
  */
-export const postSignUpData = async (email, password) => {
+export const postSignUpData = async (email: string, password: string) => {
   return await apiClient({
     method: "post",
     url: `/users/create`,
@@ -23,7 +23,7 @@ export const postSignUpData = async (email, password) => {
  * @param {string} password 
  * @returns 
  */
-export const postSignInData = async (email, password) => {
+export const postSignInData = async (email: string, password: string) => {
   return await apiClient({
     method: "post",
     url: `/users/login`,

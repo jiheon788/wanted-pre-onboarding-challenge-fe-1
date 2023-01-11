@@ -1,15 +1,19 @@
 import { useState } from "react";
 import { postSignUpData } from "../lib/apis/auth";
-import { isValidateAuthData } from "../lib/util";
+import { isValidateAuthData } from "../lib/utils";
 
-const SignUpForm = ({setIsSignIn}) => {
+interface ISignUpFormProps {
+  setIsSignIn: (isSignIn: boolean) => void;
+}
+
+const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
   const [signUpData, setSignUpData] = useState({
     email: "",
     password: "",
     rePassword: "",
   });
 
-  const onChangeSignUpData = (event) => {
+  const onChangeSignUpData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSignUpData({
       ...signUpData,
       [event.target.name]: event.target.value,
@@ -18,17 +22,16 @@ const SignUpForm = ({setIsSignIn}) => {
 
   const onClickSignUpBtn = () => {
     if (isValidateAuthData(signUpData, true)) {
-      postSignUpData(
-        signUpData.email,
-        signUpData.password
-      ).then(response => {
-        alert(response.data.message);
-        setIsSignIn(true);
-      }).catch(error => {
-        alert(error.response.data.details);
-      })
+      postSignUpData(signUpData.email, signUpData.password)
+        .then((response) => {
+          alert(response.data.message);
+          setIsSignIn(true);
+        })
+        .catch((error) => {
+          alert(error.response.data.details);
+        });
     }
-  }
+  };
 
   return (
     <form className="auth-section">
@@ -62,10 +65,10 @@ const SignUpForm = ({setIsSignIn}) => {
         onChange={onChangeSignUpData}
         className="w-100"
       />
-      
-      <button 
-        type="button" 
-        onClick={()=>{
+
+      <button
+        type="button"
+        onClick={() => {
           onClickSignUpBtn();
         }}
         className="primary-btn w-100"
@@ -77,13 +80,16 @@ const SignUpForm = ({setIsSignIn}) => {
         <span>
           <strong
             className="c-p"
-            onClick={()=>{
-              setIsSignIn(true)
-            }}>Let`s Sign In</strong>
+            onClick={() => {
+              setIsSignIn(true);
+            }}
+          >
+            Let`s Sign In
+          </strong>
         </span>
       </p>
-      </form>
-  )
-}
+    </form>
+  );
+};
 
 export default SignUpForm;
