@@ -4,7 +4,7 @@ import { postSignInData } from "../lib/apis/auth";
 import { isValidateAuthData } from "../lib/utils";
 
 interface ISignInFormProps {
-  setIsSignIn: any;
+  setIsSignIn: (isSignIn: boolean) => void;
 }
 
 const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
@@ -14,7 +14,7 @@ const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
     password: "",
   });
 
-  const onChangeSignInData = (event: any) => {
+  const onChangeSignInData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,

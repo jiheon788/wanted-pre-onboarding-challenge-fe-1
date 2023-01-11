@@ -1,10 +1,11 @@
+import { ITodo } from "pages/HomePage";
 import { updateTodo } from "../lib/apis/todos";
 
 interface IUpdateFormProps {
-  todos: any;
-  setTodos: any;
-  index: any;
-  setIsUpdate: any;
+  todos: ITodo[];
+  setTodos: (todos: ITodo[]) => void;
+  index: number;
+  setIsUpdate: (isUpdate: boolean) => void;
 }
 
 const UpdateForm = ({
@@ -13,16 +14,22 @@ const UpdateForm = ({
   index,
   setIsUpdate,
 }: IUpdateFormProps) => {
-  const onChangeFormData = (name: string, index: number) => (event: any) => {
-    let newArr = todos.map((item: any, i: number) => {
-      if (index == i) {
-        return { ...item, [name]: event.target.value };
-      } else {
-        return item;
-      }
-    });
-    setTodos(newArr);
-  };
+  const onChangeFormData =
+    (name: string, index: number) =>
+    (
+      event:
+        | React.ChangeEvent<HTMLInputElement>
+        | React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
+      let newArr = todos.map((item: ITodo, i: number) => {
+        if (index === i) {
+          return { ...item, [name]: event.target.value };
+        } else {
+          return item;
+        }
+      });
+      setTodos(newArr);
+    };
 
   const onClickSubmitBtn = () => {
     updateTodo(

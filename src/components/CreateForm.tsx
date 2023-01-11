@@ -2,9 +2,9 @@ import { useState } from "react";
 import { createTodo } from "../lib/apis/todos";
 
 interface ICreateFormProps {
-  setIsCreate: any;
-  loadTodos: any;
-  setIndex: any;
+  setIsCreate: (isCreate: boolean) => void;
+  loadTodos: () => void;
+  setIndex: (index: number) => void;
 }
 
 const CreateForm = ({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) => {
@@ -13,7 +13,11 @@ const CreateForm = ({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) => {
     content: "",
   });
 
-  const onChangeTodoData = (event: any) => {
+  const onChangeTodoData = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setTodoData({
       ...todoData,
       [event.target.name]: event.target.value,

@@ -6,13 +6,13 @@ import DetailForm from "../components/DetailForm";
 import TodoList from "../components/TodoList";
 import { getTodos, deleteTodo } from "../lib/apis/todos";
 
-interface ITodo {
+export type ITodo = {
   title: string;
   content: string;
   id: string;
   createdAt: string;
   updatedAt: string;
-}
+};
 
 const HomePage = () => {
   const navigate = useNavigate();

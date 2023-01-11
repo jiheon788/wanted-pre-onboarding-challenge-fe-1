@@ -3,7 +3,7 @@ import { postSignUpData } from "../lib/apis/auth";
 import { isValidateAuthData } from "../lib/utils";
 
 interface ISignUpFormProps {
-  setIsSignIn: any;
+  setIsSignIn: (isSignIn: boolean) => void;
 }
 
 const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
@@ -13,7 +13,7 @@ const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
     rePassword: "",
   });
 
-  const onChangeSignUpData = (event: any) => {
+  const onChangeSignUpData = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSignUpData({
       ...signUpData,
       [event.target.name]: event.target.value,

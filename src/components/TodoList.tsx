@@ -1,16 +1,9 @@
 import { calcTime } from "../lib/utils";
+import { ITodo } from "pages/HomePage";
 
 interface ITodoListProps {
-  todos: any;
-  setIndex: any;
-}
-
-interface ITodo {
-  title: string;
-  content: string;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
+  todos: ITodo[];
+  setIndex: (index: number) => void;
 }
 
 const TodoList = ({ todos, setIndex }: ITodoListProps) => {
