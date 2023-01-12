@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { postSignInData } from "../lib/apis/auth";
-import { isValidateAuthData } from "../lib/utils";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { postSignInData } from '../lib/apis/auth';
+import { isValidateAuthData } from '../lib/utils';
+import token from 'lib/token';
 
 interface ISignInFormProps {
   setIsSignIn: (isSignIn: boolean) => void;
@@ -10,8 +11,8 @@ interface ISignInFormProps {
 const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
   const navigate = useNavigate();
   const [signInData, setSignInData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const onChangeSignInData = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,8 +27,8 @@ const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
       postSignInData(signInData.email, signInData.password)
         .then((response) => {
           alert(response.data.message);
-          localStorage.setItem("token", response.data.token);
-          navigate("/");
+          token.setToken('token', response.data.token);
+          navigate('/');
         })
         .catch((error) => {
           alert(error.response.data.details);
@@ -66,7 +67,7 @@ const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
         로그인
       </button>
       <p>
-        Not registered?{"  "}
+        Not registered?{'  '}
         <span>
           <strong
             className="c-p"

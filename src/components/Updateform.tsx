@@ -1,5 +1,6 @@
-import { ITodo } from "pages/HomePage";
-import { updateTodo } from "../lib/apis/todos";
+import { ITodo } from 'pages/HomePage';
+import { updateTodo } from '../lib/apis/todos';
+import token from 'lib/token';
 
 interface IUpdateFormProps {
   todos: ITodo[];
@@ -19,7 +20,7 @@ const UpdateForm = ({
     (
       event:
         | React.ChangeEvent<HTMLInputElement>
-        | React.ChangeEvent<HTMLTextAreaElement>
+        | React.ChangeEvent<HTMLTextAreaElement>,
     ) => {
       let newArr = todos.map((item: ITodo, i: number) => {
         if (index === i) {
@@ -33,12 +34,11 @@ const UpdateForm = ({
 
   const onClickSubmitBtn = () => {
     updateTodo(
-      localStorage.getItem("token"),
+      token.getToken('token'),
       todos[index].title,
       todos[index].content,
-      todos[index].id
+      todos[index].id,
     );
-
     setIsUpdate(false);
   };
 
@@ -49,7 +49,7 @@ const UpdateForm = ({
         name="title"
         type="title"
         value={todos[index].title}
-        onChange={onChangeFormData("title", index)}
+        onChange={onChangeFormData('title', index)}
         className=" w-100"
       />
 
@@ -57,7 +57,7 @@ const UpdateForm = ({
         id="content"
         name="content"
         value={todos[index].content}
-        onChange={onChangeFormData("content", index)}
+        onChange={onChangeFormData('content', index)}
         className=" w-100"
       />
 

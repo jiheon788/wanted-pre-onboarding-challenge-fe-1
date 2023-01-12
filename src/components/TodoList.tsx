@@ -1,5 +1,5 @@
-import { calcTime } from "../lib/utils";
-import { ITodo } from "pages/HomePage";
+import { calcTime } from '../lib/utils';
+import { ITodo } from 'pages/HomePage';
 
 interface ITodoListProps {
   todos: ITodo[];

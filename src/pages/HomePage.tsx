@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import CreateForm from "../components/CreateForm";
-import UpdateForm from "../components/Updateform";
-import DetailForm from "../components/DetailForm";
-import TodoList from "../components/TodoList";
-import { getTodos, deleteTodo } from "../lib/apis/todos";
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import CreateForm from '../components/CreateForm';
+import UpdateForm from '../components/Updateform';
+import DetailForm from '../components/DetailForm';
+import TodoList from '../components/TodoList';
+import { getTodos, deleteTodo } from '../lib/apis/todos';
+import token from 'lib/token';
 
 export type ITodo = {
   title: string;
@@ -14,7 +15,7 @@ export type ITodo = {
   updatedAt: string;
 };
 
-const HomePage = () => {
+function HomePage() {
   const navigate = useNavigate();
   const [isCreate, setIsCreate] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
@@ -22,15 +23,15 @@ const HomePage = () => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      navigate("/auth");
+    if (!token.getToken('token')) {
+      navigate('/auth');
     } else {
       loadTodos();
     }
   }, []);
 
   const loadTodos = () => {
-    getTodos(localStorage.getItem("token")).then((response) => {
+    getTodos(token.getToken('token')).then((response) => {
       setTodos(response.data.data.reverse());
     });
   };
@@ -44,7 +45,7 @@ const HomePage = () => {
   };
 
   const onClickDeleteBtn = () => {
-    deleteTodo(localStorage.getItem("token"), todos[index].id).then((_) => {
+    deleteTodo(token.getToken('token'), todos[index].id).then((_) => {
       loadTodos();
       setIndex(0);
     });
@@ -52,7 +53,7 @@ const HomePage = () => {
 
   return (
     <>
-      {localStorage.getItem("token") ? (
+      {token.getToken('token') ? (
         <div className="main-separator">
           <div className="container">
             {isCreate ? (
@@ -139,7 +140,7 @@ const HomePage = () => {
 
             <span
               onClick={() => {
-                localStorage.removeItem("token");
+                token.removeToken('token');
                 window.location.reload();
               }}
               className="material-symbols-outlined"
@@ -153,6 +154,6 @@ const HomePage = () => {
       )}
     </>
   );
-};
+}
 
 export default HomePage;
