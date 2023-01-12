@@ -1,6 +1,12 @@
 import { useState } from 'react';
-import { postSignUpData } from '../lib/apis/auth';
-import { isValidateAuthData } from '../lib/utils';
+import { postSignUpData } from '../../lib/apis/auth';
+import { isValidateAuthData } from '../../lib/utils';
+import {
+  SignUpContainer,
+  SignUpInput,
+  SignUpButton,
+  StrongText,
+} from './styles';
 
 interface ISignUpFormProps {
   setIsSignIn: (isSignIn: boolean) => void;
@@ -34,17 +40,16 @@ const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
   };
 
   return (
-    <form className="auth-section">
-      <input
+    <SignUpContainer>
+      <SignUpInput
         id="email"
         name="email"
         type="email"
         placeholder="이메일"
         value={signUpData.email}
         onChange={onChangeSignUpData}
-        className=" w-100"
       />
-      <input
+      <SignUpInput
         id="password"
         name="password"
         type="password"
@@ -52,10 +57,9 @@ const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
         placeholder="패스워드"
         value={signUpData.password}
         onChange={onChangeSignUpData}
-        className="w-100"
       />
 
-      <input
+      <SignUpInput
         id="rePassword"
         name="rePassword"
         type="password"
@@ -63,32 +67,28 @@ const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
         placeholder="패스워드 확인"
         value={signUpData.rePassword}
         onChange={onChangeSignUpData}
-        className="w-100"
       />
 
-      <button
+      <SignUpButton
         type="button"
         onClick={() => {
           onClickSignUpBtn();
         }}
-        className="primary-btn w-100"
       >
         회원가입
-      </button>
+      </SignUpButton>
       <p>
-        Already registered?{' '}
-        <span>
-          <strong
-            className="c-p"
-            onClick={() => {
-              setIsSignIn(true);
-            }}
-          >
-            Let`s Sign In
-          </strong>
-        </span>
+        Already registered?{'  '}
+        <StrongText
+          className="c-p"
+          onClick={() => {
+            setIsSignIn(true);
+          }}
+        >
+          Let`s Sign In
+        </StrongText>
       </p>
-    </form>
+    </SignUpContainer>
   );
 };
 
