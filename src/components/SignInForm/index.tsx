@@ -1,8 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postSignInData } from '../lib/apis/auth';
-import { isValidateAuthData } from '../lib/utils';
+import { postSignInData } from '../../lib/apis/auth';
+import { isValidateAuthData } from '../../lib/utils';
 import token from 'lib/token';
+import {
+  SignInContainer,
+  SignInInput,
+  SignInButton,
+  StrongText,
+} from './styles';
 
 interface ISignInFormProps {
   setIsSignIn: (isSignIn: boolean) => void;
@@ -36,17 +42,16 @@ const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
     }
   };
   return (
-    <form className="auth-section">
-      <input
+    <SignInContainer>
+      <SignInInput
         id="email"
         name="email"
         type="text"
         placeholder="이메일"
         value={signInData.email}
         onChange={onChangeSignInData}
-        className="w-100"
       />
-      <input
+      <SignInInput
         type="password"
         placeholder="패스워드"
         autoComplete="off"
@@ -54,10 +59,9 @@ const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
         id="password"
         value={signInData.password}
         onChange={onChangeSignInData}
-        className="w-100"
       />
 
-      <button
+      <SignInButton
         type="button"
         onClick={() => {
           onClickSignInBtn();
@@ -65,21 +69,18 @@ const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
         className="primary-btn w-100"
       >
         로그인
-      </button>
+      </SignInButton>
       <p>
         Not registered?{'  '}
-        <span>
-          <strong
-            className="c-p"
-            onClick={() => {
-              setIsSignIn(false);
-            }}
-          >
-            Create an Account
-          </strong>
-        </span>
+        <StrongText
+          onClick={() => {
+            setIsSignIn(false);
+          }}
+        >
+          Create an Account
+        </StrongText>
       </p>
-    </form>
+    </SignInContainer>
   );
 };
 

@@ -49,9 +49,9 @@
 
 ## 🛠 Tech Stack
 
-`React`
+`React`, `Typesctipt`, `styled-componets`
 
-- todos: `React Query`, `Typesctipt`
+- todos: `React-Query`
 
 ## 📷 Screenshots
 

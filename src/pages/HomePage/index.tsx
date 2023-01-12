@@ -1,19 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import CreateForm from '../components/CreateForm';
-import UpdateForm from '../components/Updateform';
-import DetailForm from '../components/DetailForm';
-import TodoList from '../components/TodoList';
-import { getTodos, deleteTodo } from '../lib/apis/todos';
+import CreateForm from '../../components/CreateForm';
+import UpdateForm from '../../components/Updateform';
+import DetailForm from '../../components/DetailForm';
+import TodoList from '../../components/TodoList';
+import { getTodos, deleteTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
+import { MainContainer, Container, ToolBox, Icon } from './style';
 
-export type ITodo = {
+export interface ITodo {
   title: string;
   content: string;
   id: string;
   createdAt: string;
   updatedAt: string;
-};
+}
 
 function HomePage() {
   const navigate = useNavigate();
@@ -54,8 +55,8 @@ function HomePage() {
   return (
     <>
       {token.getToken('token') ? (
-        <div className="main-separator">
-          <div className="container">
+        <MainContainer>
+          <Container>
             {isCreate ? (
               <CreateForm
                 setIsCreate={setIsCreate}
@@ -86,59 +87,59 @@ function HomePage() {
               </>
             )}
             <TodoList todos={todos} setIndex={setIndex} />
-          </div>
+          </Container>
 
-          <div className="tool-box">
+          <ToolBox className="tool-box">
             {isCreate ? (
-              <span
+              <Icon
                 className="material-symbols-outlined"
                 onClick={() => {
                   setIsCreate(false);
                 }}
               >
                 close
-              </span>
+              </Icon>
             ) : (
-              <span
+              <Icon
                 className="material-symbols-outlined"
                 onClick={() => {
                   onClickAddBtn();
                 }}
               >
                 add
-              </span>
+              </Icon>
             )}
 
             {isUpdate ? (
-              <span
+              <Icon
                 className="material-symbols-outlined"
                 onClick={() => {
                   setIsUpdate(false);
                 }}
               >
                 close
-              </span>
+              </Icon>
             ) : (
-              <span
+              <Icon
                 className="material-symbols-outlined"
                 onClick={() => {
                   onClickUpdateBtn();
                 }}
               >
                 edit
-              </span>
+              </Icon>
             )}
 
-            <span
+            <Icon
               onClick={() => {
                 onClickDeleteBtn();
               }}
               className="material-symbols-outlined"
             >
               delete
-            </span>
+            </Icon>
 
-            <span
+            <Icon
               onClick={() => {
                 token.removeToken('token');
                 window.location.reload();
@@ -146,9 +147,9 @@ function HomePage() {
               className="material-symbols-outlined"
             >
               logout
-            </span>
-          </div>
-        </div>
+            </Icon>
+          </ToolBox>
+        </MainContainer>
       ) : (
         <></>
       )}

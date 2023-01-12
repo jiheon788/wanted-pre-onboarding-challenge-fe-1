@@ -1,6 +1,12 @@
 import { useState } from 'react';
-import { createTodo } from '../lib/apis/todos';
+import { createTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
+import {
+  CreateContainer,
+  CreateInput,
+  CreateTextArea,
+  CreateButton,
+} from './style';
 
 interface ICreateFormProps {
   setIsCreate: (isCreate: boolean) => void;
@@ -8,10 +14,9 @@ interface ICreateFormProps {
   setIndex: (index: number) => void;
 }
 
-function CreateForm({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) {
+const CreateForm = ({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) => {
   const [todoData, setTodoData] = useState({
     title: '',
-
     content: '',
   });
 
@@ -33,35 +38,32 @@ function CreateForm({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) {
     setIsCreate(false);
   };
   return (
-    <form className="auth-section">
-      <input
+    <CreateContainer>
+      <CreateInput
         id="title"
         name="title"
         type="title"
         placeholder="제목을 입력하세요."
         value={todoData.title}
         onChange={onChangeTodoData}
-        className=" w-100"
       />
-      <textarea
+      <CreateTextArea
         id="content"
         name="content"
         placeholder="본문을 입력하세요."
         value={todoData.content}
         onChange={onChangeTodoData}
-        className=" w-100"
       />
-      <button
+      <CreateButton
         type="button"
         onClick={() => {
           onClickCreateBtn();
         }}
-        className="primary-btn w-100"
       >
         작성하기
-      </button>
-    </form>
+      </CreateButton>
+    </CreateContainer>
   );
-}
+};
 
 export default CreateForm;

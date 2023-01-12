@@ -1,7 +1,12 @@
 import { ITodo } from 'pages/HomePage';
-import { updateTodo } from '../lib/apis/todos';
+import { updateTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
-
+import {
+  UpdateContainer,
+  UpdateInput,
+  UpdateTextArea,
+  UpdateButton,
+} from './style';
 interface IUpdateFormProps {
   todos: ITodo[];
   setTodos: (todos: ITodo[]) => void;
@@ -43,25 +48,21 @@ const UpdateForm = ({
   };
 
   return (
-    <form className="auth-section">
-      <input
+    <UpdateContainer>
+      <UpdateInput
         id="title"
         name="title"
         type="title"
         value={todos[index].title}
         onChange={onChangeFormData('title', index)}
-        className=" w-100"
       />
-
-      <textarea
+      <UpdateTextArea
         id="content"
         name="content"
         value={todos[index].content}
         onChange={onChangeFormData('content', index)}
-        className=" w-100"
       />
-
-      <button
+      <UpdateButton
         type="button"
         onClick={() => {
           onClickSubmitBtn();
@@ -69,8 +70,8 @@ const UpdateForm = ({
         className="primary-btn w-100"
       >
         수정하기
-      </button>
-    </form>
+      </UpdateButton>
+    </UpdateContainer>
   );
 };
 
