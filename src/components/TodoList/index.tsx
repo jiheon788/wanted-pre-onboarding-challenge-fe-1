@@ -1,5 +1,6 @@
-import { calcTime } from '../lib/utils';
+import { calcTime } from '../../lib/utils';
 import { ITodo } from 'pages/HomePage';
+import { TodosUl, TodoLi, TimeStamp } from './style';
 
 interface ITodoListProps {
   todos: ITodo[];
@@ -8,22 +9,19 @@ interface ITodoListProps {
 
 const TodoList = ({ todos, setIndex }: ITodoListProps) => {
   return (
-    <ul className="todos-section">
+    <TodosUl>
       {todos.map((todo: ITodo, index: number) => (
-        <li
+        <TodoLi
           key={todo.id}
           onClick={() => {
             setIndex(index);
           }}
         >
-          <div className="check-label">
-            <input type="checkbox" id="test-1" />
-            <label htmlFor="">{todo.title}</label>
-          </div>
-          <div className="time-stamp">{calcTime(todo.updatedAt)}</div>
-        </li>
+          {todo.title}
+          <TimeStamp>{calcTime(todo.updatedAt)}</TimeStamp>
+        </TodoLi>
       ))}
-    </ul>
+    </TodosUl>
   );
 };
 
