@@ -6,6 +6,7 @@ import DetailForm from '../components/DetailForm';
 import TodoList from '../components/TodoList';
 import { getTodos, deleteTodo } from '../lib/apis/todos';
 import token from 'lib/token';
+
 export type ITodo = {
   title: string;
   content: string;
