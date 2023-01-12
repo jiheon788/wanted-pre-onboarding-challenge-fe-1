@@ -1,4 +1,4 @@
-const DetailForm = ({ title = "", content = "" }) => {
+const DetailForm = ({ title = '', content = '' }) => {
   return (
     <div className="detail-section">
       <h1>{title}</h1>

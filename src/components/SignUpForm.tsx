@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { postSignUpData } from "../lib/apis/auth";
-import { isValidateAuthData } from "../lib/utils";
+import { useState } from 'react';
+import { postSignUpData } from '../lib/apis/auth';
+import { isValidateAuthData } from '../lib/utils';
 
 interface ISignUpFormProps {
   setIsSignIn: (isSignIn: boolean) => void;
@@ -8,9 +8,9 @@ interface ISignUpFormProps {
 
 const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
   const [signUpData, setSignUpData] = useState({
-    email: "",
-    password: "",
-    rePassword: "",
+    email: '',
+    password: '',
+    rePassword: '',
   });
 
   const onChangeSignUpData = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +76,7 @@ const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
         회원가입
       </button>
       <p>
-        Already registered?{" "}
+        Already registered?{' '}
         <span>
           <strong
             className="c-p"
