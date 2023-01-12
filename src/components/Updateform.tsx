@@ -1,5 +1,6 @@
 import { ITodo } from 'pages/HomePage';
 import { updateTodo } from '../lib/apis/todos';
+import token from 'lib/token';
 
 interface IUpdateFormProps {
   todos: ITodo[];
@@ -33,12 +34,11 @@ const UpdateForm = ({
 
   const onClickSubmitBtn = () => {
     updateTodo(
-      localStorage.getItem('token'),
+      token.getToken('token'),
       todos[index].title,
       todos[index].content,
       todos[index].id,
     );
-
     setIsUpdate(false);
   };
 

@@ -5,7 +5,7 @@ import UpdateForm from '../components/Updateform';
 import DetailForm from '../components/DetailForm';
 import TodoList from '../components/TodoList';
 import { getTodos, deleteTodo } from '../lib/apis/todos';
-
+import token from 'lib/token';
 export type ITodo = {
   title: string;
   content: string;
@@ -22,7 +22,7 @@ function HomePage() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!localStorage.getItem('token')) {
+    if (!token.getToken('token')) {
       navigate('/auth');
     } else {
       loadTodos();
@@ -30,7 +30,7 @@ function HomePage() {
   }, []);
 
   const loadTodos = () => {
-    getTodos(localStorage.getItem('token')).then((response) => {
+    getTodos(token.getToken('token')).then((response) => {
       setTodos(response.data.data.reverse());
     });
   };
@@ -44,7 +44,7 @@ function HomePage() {
   };
 
   const onClickDeleteBtn = () => {
-    deleteTodo(localStorage.getItem('token'), todos[index].id).then((_) => {
+    deleteTodo(token.getToken('token'), todos[index].id).then((_) => {
       loadTodos();
       setIndex(0);
     });
@@ -52,7 +52,7 @@ function HomePage() {
 
   return (
     <>
-      {localStorage.getItem('token') ? (
+      {token.getToken('token') ? (
         <div className="main-separator">
           <div className="container">
             {isCreate ? (
@@ -139,7 +139,7 @@ function HomePage() {
 
             <span
               onClick={() => {
-                localStorage.removeItem('token');
+                token.removeToken('token');
                 window.location.reload();
               }}
               className="material-symbols-outlined"

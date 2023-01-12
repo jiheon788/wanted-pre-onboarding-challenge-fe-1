@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postSignInData } from '../lib/apis/auth';
 import { isValidateAuthData } from '../lib/utils';
+import token from 'lib/token';
 
 interface ISignInFormProps {
   setIsSignIn: (isSignIn: boolean) => void;
@@ -26,7 +27,7 @@ const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
       postSignInData(signInData.email, signInData.password)
         .then((response) => {
           alert(response.data.message);
-          localStorage.setItem('token', response.data.token);
+          token.setToken('token', response.data.token);
           navigate('/');
         })
         .catch((error) => {

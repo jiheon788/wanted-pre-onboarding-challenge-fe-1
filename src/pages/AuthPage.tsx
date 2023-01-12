@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import SignInForm from '../components/SignInForm';
 import SignUpForm from '../components/SignUpForm';
-
+import token from 'lib/token';
 const AuthPage = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (token.getToken('token')) {
       navigate('/');
     }
   }, []);

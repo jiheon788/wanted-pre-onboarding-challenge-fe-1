@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { createTodo } from '../lib/apis/todos';
+import token from 'lib/token';
 
 interface ICreateFormProps {
   setIsCreate: (isCreate: boolean) => void;
@@ -10,6 +11,7 @@ interface ICreateFormProps {
 function CreateForm({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) {
   const [todoData, setTodoData] = useState({
     title: '',
+
     content: '',
   });
 
@@ -25,7 +27,7 @@ function CreateForm({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) {
   };
 
   const onClickCreateBtn = () => {
-    createTodo(localStorage.getItem('token'), todoData.title, todoData.content);
+    createTodo(token.getToken('token'), todoData.title, todoData.content);
     loadTodos();
     setIndex(0);
     setIsCreate(false);
