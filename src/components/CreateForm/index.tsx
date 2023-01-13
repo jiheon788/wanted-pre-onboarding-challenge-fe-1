@@ -7,6 +7,7 @@ import {
   CreateTextArea,
   CreateButton,
 } from './style';
+import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex';
 
 interface ICreateFormProps {
   setIsCreate: (isCreate: boolean) => void;
@@ -54,14 +55,7 @@ const CreateForm = ({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) => {
         value={todoData.content}
         onChange={onChangeTodoData}
       />
-      <CreateButton
-        type="button"
-        onClick={() => {
-          onClickCreateBtn();
-        }}
-      >
-        작성하기
-      </CreateButton>
+      <PrimaryCallbackButton title="작성하기" callback={onClickCreateBtn} />
     </CreateContainer>
   );
 };

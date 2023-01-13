@@ -1,12 +1,8 @@
 import { ITodo } from 'pages/HomePage';
 import { updateTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
-import {
-  UpdateContainer,
-  UpdateInput,
-  UpdateTextArea,
-  UpdateButton,
-} from './style';
+import { UpdateContainer, UpdateInput, UpdateTextArea } from './style';
+import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex';
 interface IUpdateFormProps {
   todos: ITodo[];
   setTodos: (todos: ITodo[]) => void;
@@ -62,15 +58,8 @@ const UpdateForm = ({
         value={todos[index].content}
         onChange={onChangeFormData('content', index)}
       />
-      <UpdateButton
-        type="button"
-        onClick={() => {
-          onClickSubmitBtn();
-        }}
-        className="primary-btn w-100"
-      >
-        수정하기
-      </UpdateButton>
+
+      <PrimaryCallbackButton title="수정하기" callback={onClickSubmitBtn} />
     </UpdateContainer>
   );
 };
