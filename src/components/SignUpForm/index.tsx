@@ -1,3 +1,4 @@
+import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex';
 import { useState } from 'react';
 import { postSignUpData } from '../../lib/apis/auth';
 import { isValidateAuthData } from '../../lib/utils';
@@ -69,18 +70,11 @@ const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
         onChange={onChangeSignUpData}
       />
 
-      <SignUpButton
-        type="button"
-        onClick={() => {
-          onClickSignUpBtn();
-        }}
-      >
-        회원가입
-      </SignUpButton>
+      <PrimaryCallbackButton title="회원가입" callback={onClickSignUpBtn} />
+
       <p>
         Already registered?{'  '}
         <StrongText
-          className="c-p"
           onClick={() => {
             setIsSignIn(true);
           }}

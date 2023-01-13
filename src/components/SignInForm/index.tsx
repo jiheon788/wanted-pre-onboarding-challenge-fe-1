@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postSignInData } from '../../lib/apis/auth';
 import { isValidateAuthData } from '../../lib/utils';
+import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex';
 import token from 'lib/token';
 import {
   SignInContainer,
@@ -61,15 +62,8 @@ const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
         onChange={onChangeSignInData}
       />
 
-      <SignInButton
-        type="button"
-        onClick={() => {
-          onClickSignInBtn();
-        }}
-        className="primary-btn w-100"
-      >
-        로그인
-      </SignInButton>
+      <PrimaryCallbackButton title={'로그인'} callback={onClickSignInBtn} />
+
       <p>
         Not registered?{'  '}
         <StrongText
