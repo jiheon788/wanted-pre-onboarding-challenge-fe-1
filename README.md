@@ -1,6 +1,4 @@
-# To-do List
-
-> 원티드 프리온보딩 챌린지 프론트엔드 코스 과제
+# 원티드 프리온보딩 챌린지
 
 <img src="https://user-images.githubusercontent.com/90181028/210785620-7b11cce1-7bf9-4875-a0c7-64f5ec380973.gif" width="90%" />
 
