@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -30,7 +30,10 @@ const GlobalStyle = createGlobalStyle`
     justify-content: center;
     background: linear-gradient(320deg, #eb92be, #ffef78, #63c9b4);
     height: inherit;
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    line-height: 1.3rem;
+    letter-spacing: 1px;
+
   }
 `;
 

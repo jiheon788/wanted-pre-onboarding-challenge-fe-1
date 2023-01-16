@@ -7,14 +7,7 @@ import TodoList from '../../components/TodoList';
 import { getTodos, deleteTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
 import { MainContainer, Container, ToolBox, Icon } from './style';
-
-export interface ITodo {
-  title: string;
-  content: string;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { ITodo } from 'types/todo.type';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -26,16 +19,10 @@ function HomePage() {
   useEffect(() => {
     if (!token.getToken('token')) {
       navigate('/auth');
-    } else {
-      loadTodos();
     }
-  }, []);
 
-  const loadTodos = () => {
-    getTodos(token.getToken('token')).then((response) => {
-      setTodos(response.data.data.reverse());
-    });
-  };
+    console.log(index);
+  }, []);
 
   const onClickAddBtn = () => {
     setIsCreate(!isCreate);
@@ -47,7 +34,7 @@ function HomePage() {
 
   const onClickDeleteBtn = () => {
     deleteTodo(token.getToken('token'), todos[index].id).then((_) => {
-      loadTodos();
+      // loadTodos();
       setIndex(0);
     });
   };
@@ -58,11 +45,7 @@ function HomePage() {
         <MainContainer>
           <Container>
             {isCreate ? (
-              <CreateForm
-                setIsCreate={setIsCreate}
-                loadTodos={loadTodos}
-                setIndex={setIndex}
-              />
+              <CreateForm setIsCreate={setIsCreate} setIndex={setIndex} />
             ) : (
               <>
                 {isUpdate ? (
@@ -86,7 +69,7 @@ function HomePage() {
                 )}
               </>
             )}
-            <TodoList todos={todos} setIndex={setIndex} />
+            <TodoList setIndex={setIndex} />
           </Container>
 
           <ToolBox className="tool-box">

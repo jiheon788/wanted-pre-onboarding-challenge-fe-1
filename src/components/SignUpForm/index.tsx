@@ -70,7 +70,7 @@ const SignUpForm = ({ setIsSignIn }: ISignUpFormProps) => {
         onChange={onChangeSignUpData}
       />
 
-      <PrimaryCallbackButton title="회원가입" callback={onClickSignUpBtn} />
+      <PrimaryCallbackButton title="회원가입" handleEvent={onClickSignUpBtn} />
 
       <p>
         Already registered?{'  '}

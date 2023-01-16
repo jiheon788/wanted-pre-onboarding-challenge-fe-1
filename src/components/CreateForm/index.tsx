@@ -8,14 +8,15 @@ import {
   CreateButton,
 } from './style';
 import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex';
+import { useMutation } from 'react-query';
+import { queryClient } from 'lib/queryClient';
 
 interface ICreateFormProps {
   setIsCreate: (isCreate: boolean) => void;
-  loadTodos: () => void;
   setIndex: (index: number) => void;
 }
 
-const CreateForm = ({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) => {
+const CreateForm = ({ setIsCreate, setIndex }: ICreateFormProps) => {
   const [todoData, setTodoData] = useState({
     title: '',
     content: '',
@@ -32,12 +33,26 @@ const CreateForm = ({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) => {
     });
   };
 
+  const { mutate, isLoading, isError, error, isSuccess } =
+    useMutation(createTodo);
+
   const onClickCreateBtn = () => {
-    createTodo(token.getToken('token'), todoData.title, todoData.content);
-    loadTodos();
-    setIndex(0);
-    setIsCreate(false);
+    const accessToken = token.getToken('token');
+    const title = todoData.title;
+    const content = todoData.content;
+
+    mutate(
+      { accessToken, title, content },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['getTodos'] });
+          setIsCreate(false);
+          setIndex(0);
+        },
+      },
+    );
   };
+
   return (
     <CreateContainer>
       <CreateInput
@@ -55,7 +70,7 @@ const CreateForm = ({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) => {
         value={todoData.content}
         onChange={onChangeTodoData}
       />
-      <PrimaryCallbackButton title="작성하기" callback={onClickCreateBtn} />
+      <PrimaryCallbackButton title="작성하기" handleEvent={onClickCreateBtn} />
     </CreateContainer>
   );
 };
