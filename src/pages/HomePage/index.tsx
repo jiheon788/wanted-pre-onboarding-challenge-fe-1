@@ -8,6 +8,7 @@ import { getTodos, deleteTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
 import { MainContainer, Container, ToolBox, Icon } from './style';
 import { ITodo } from 'types/todo.type';
+import { useQuery } from 'react-query';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -45,6 +46,24 @@ function HomePage() {
     });
   };
 
+  interface IResponse {
+    status: any;
+    data: any;
+    error: any;
+  }
+
+  const { status, data, error }: IResponse = useQuery('todos', () =>
+    getTodos(token.getToken('token')),
+  );
+
+  if (status === 'loading') {
+    return <span>Loading...</span>;
+  }
+
+  if (status === 'error') {
+    return <span>Error: {error.message}</span>;
+  }
+
   return (
     <>
       {token.getToken('token') ? (
@@ -79,7 +98,7 @@ function HomePage() {
                 )}
               </>
             )}
-            <TodoList todos={todos} setIndex={setIndex} />
+            <TodoList todos={data.data.data.reverse()} setIndex={setIndex} />
           </Container>
 
           <ToolBox className="tool-box">
