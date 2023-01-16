@@ -1,91 +1,106 @@
-import { apiClient } from ".";
+import { apiClient } from '.';
 
 /**
  * 투두리스트 조회
- * @param {*} accessToken 
- * @returns 
+ * @param {*} accessToken
+ * @returns
  */
 export const getTodos = async (accessToken: any) => {
   return await apiClient({
-    method: "get",
+    method: 'get',
     url: `/todos`,
     headers: {
-      Authorization: accessToken
-    }
-  })
+      Authorization: accessToken,
+    },
+  });
 };
 
 /**
  * 상세조회
- * @param {*} accessToken 
- * @param {*} id 
- * @returns 
+ * @param {*} accessToken
+ * @param {*} id
+ * @returns
  */
 export const getTodoById = async (accessToken: any, id: string) => {
   return await apiClient({
-    method: "get",
+    method: 'get',
     url: `/todos/${id}`,
     headers: {
-      Authorization: accessToken
-    }
-  })
+      Authorization: accessToken,
+    },
+  });
 };
+
+interface createTodoParam {
+  accessToken: any;
+  title: string;
+  content: string;
+}
 
 /**
  * 투두리스트 작성
- * @param {*} accessToken 
- * @param {*} title 
- * @param {*} content 
- * @returns 
+ * @param {*} accessToken
+ * @param {*} title
+ * @param {*} content
+ * @returns
  */
-export const createTodo = async (accessToken: any, title: string, content: string) => {
+export const createTodo = async ({
+  accessToken,
+  title,
+  content,
+}: createTodoParam) => {
   return await apiClient({
-    method: "post",
+    method: 'post',
     url: `/todos`,
     headers: {
-      Authorization: accessToken
+      Authorization: accessToken,
     },
     data: {
       title,
-      content
-    }
-  })
+      content,
+    },
+  });
 };
 
 /**
  * 투두리스트 수정
- * @param {*} accessToken 
- * @param {*} title 
- * @param {*} content 
- * @param {*} id 
- * @returns 
+ * @param {*} accessToken
+ * @param {*} title
+ * @param {*} content
+ * @param {*} id
+ * @returns
  */
-export const updateTodo = async (accessToken: any, title: string, content: string, id: string) => {
+export const updateTodo = async (
+  accessToken: any,
+  title: string,
+  content: string,
+  id: string,
+) => {
   return await apiClient({
-    method: "put",
+    method: 'put',
     url: `/todos/${id}`,
     headers: {
-      Authorization: accessToken
+      Authorization: accessToken,
     },
     data: {
       title,
-      content
-    }
-  })
+      content,
+    },
+  });
 };
 
 /**
  * 투두리스트 삭제
- * @param {*} accessToken 
- * @param {*} id 
- * @returns 
+ * @param {*} accessToken
+ * @param {*} id
+ * @returns
  */
 export const deleteTodo = async (accessToken: any, id: string) => {
   return await apiClient({
-    method: "delete",
+    method: 'delete',
     url: `/todos/${id}`,
     headers: {
-      Authorization: accessToken
-    }
-  })
+      Authorization: accessToken,
+    },
+  });
 };
