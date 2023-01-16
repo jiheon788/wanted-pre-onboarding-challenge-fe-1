@@ -2,12 +2,12 @@ import { PrimaryButton } from './style';
 
 interface IProps {
   title: string;
-  callback: any;
+  handleEvent: any;
 }
 
-const PrimaryCallbackButton = ({ title, callback }: IProps) => {
+const PrimaryCallbackButton = ({ title, handleEvent }: IProps) => {
   return (
-    <PrimaryButton type="button" onClick={callback}>
+    <PrimaryButton type="button" onClick={handleEvent}>
       {title}
     </PrimaryButton>
   );

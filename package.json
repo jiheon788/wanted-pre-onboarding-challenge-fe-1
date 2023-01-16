@@ -30,9 +30,23 @@
   },
   "eslintConfig": {
     "extends": [
+      "react",
       "react-app",
       "prettier"
-    ]
+    ],
+    "rules": {
+      "react/jsx-filename-extension": [
+        2,
+        {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+          ]
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [

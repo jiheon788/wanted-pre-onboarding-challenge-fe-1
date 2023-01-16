@@ -1,5 +1,5 @@
+import { ITodo } from 'types/todo.type';
 import { calcTime } from '../../lib/utils';
-import { ITodo } from 'pages/HomePage';
 import { TodosUl, TodoLi, TimeStamp } from './style';
 
 interface ITodoListProps {

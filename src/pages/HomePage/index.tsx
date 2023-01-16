@@ -7,14 +7,7 @@ import TodoList from '../../components/TodoList';
 import { getTodos, deleteTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
 import { MainContainer, Container, ToolBox, Icon } from './style';
-
-export interface ITodo {
-  title: string;
-  content: string;
-  id: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { ITodo } from 'types/todo.type';
 
 function HomePage() {
   const navigate = useNavigate();

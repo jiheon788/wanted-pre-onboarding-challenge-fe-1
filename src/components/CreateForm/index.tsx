@@ -55,7 +55,7 @@ const CreateForm = ({ setIsCreate, loadTodos, setIndex }: ICreateFormProps) => {
         value={todoData.content}
         onChange={onChangeTodoData}
       />
-      <PrimaryCallbackButton title="작성하기" callback={onClickCreateBtn} />
+      <PrimaryCallbackButton title="작성하기" handleEvent={onClickCreateBtn} />
     </CreateContainer>
   );
 };

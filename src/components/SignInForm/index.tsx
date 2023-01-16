@@ -62,7 +62,7 @@ const SignInForm = ({ setIsSignIn }: ISignInFormProps) => {
         onChange={onChangeSignInData}
       />
 
-      <PrimaryCallbackButton title={'로그인'} callback={onClickSignInBtn} />
+      <PrimaryCallbackButton title={'로그인'} handleEvent={onClickSignInBtn} />
 
       <p>
         Not registered?{'  '}
