@@ -8,6 +8,8 @@ import { getTodos, deleteTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
 import { MainContainer, Container, ToolBox, Icon } from './style';
 import { ITodo } from 'types/todo.type';
+import { useMutation, useQuery } from 'react-query';
+import { queryClient } from 'lib/queryClient';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -20,8 +22,6 @@ function HomePage() {
     if (!token.getToken('token')) {
       navigate('/auth');
     }
-
-    console.log(index);
   }, []);
 
   const onClickAddBtn = () => {
@@ -32,12 +32,37 @@ function HomePage() {
     setIsUpdate(!isUpdate);
   };
 
+  const { mutate } = useMutation(deleteTodo);
+
   const onClickDeleteBtn = () => {
-    deleteTodo(token.getToken('token'), todos[index].id).then((_) => {
-      // loadTodos();
-      setIndex(0);
-    });
+    const accessToken = token.getToken('token');
+    const id = data[index].id;
+    mutate(
+      { accessToken, id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['getTodos'] });
+          setIndex(0);
+        },
+      },
+    );
   };
+
+  const { status, data, error }: any = useQuery({
+    queryKey: ['getTodos'],
+    queryFn: () =>
+      getTodos(token.getToken('token')).then((response) =>
+        response.data.data.reverse(),
+      ),
+  });
+
+  if (status === 'loading') {
+    return <span>Loading...</span>;
+  }
+
+  if (status === 'error') {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <>
@@ -50,26 +75,21 @@ function HomePage() {
               <>
                 {isUpdate ? (
                   <UpdateForm
-                    todos={todos}
+                    todos={data}
                     setTodos={setTodos}
                     index={index}
                     setIsUpdate={setIsUpdate}
                   />
                 ) : (
-                  <>
-                    {todos.length > 0 ? (
-                      <DetailForm
-                        title={todos[index].title}
-                        content={todos[index].content}
-                      />
-                    ) : (
-                      <></>
-                    )}
-                  </>
+                  <DetailForm
+                    title={data[index].title}
+                    content={data[index].content}
+                  />
                 )}
               </>
             )}
-            <TodoList setIndex={setIndex} />
+
+            <TodoList data={data} setIndex={setIndex} />
           </Container>
 
           <ToolBox className="tool-box">

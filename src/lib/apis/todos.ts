@@ -89,13 +89,12 @@ export const updateTodo = async (
   });
 };
 
-/**
- * 투두리스트 삭제
- * @param {*} accessToken
- * @param {*} id
- * @returns
- */
-export const deleteTodo = async (accessToken: any, id: string) => {
+interface deleteTodoParam {
+  accessToken: any;
+  id: string;
+}
+
+export const deleteTodo = async ({ accessToken, id }: deleteTodoParam) => {
   return await apiClient({
     method: 'delete',
     url: `/todos/${id}`,

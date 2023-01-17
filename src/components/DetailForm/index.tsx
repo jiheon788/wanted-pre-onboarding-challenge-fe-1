@@ -5,11 +5,12 @@ interface IDetailFormProps {
   content: string;
 }
 
-const DetailForm = ({ title = '', content = '' }: IDetailFormProps) => {
+const DetailForm = ({ title = 's', content = '' }: IDetailFormProps) => {
   return (
     <DetailContainer>
       <Title>{title}</Title>
       <p>{content}</p>
+      dd
     </DetailContainer>
   );
 };
