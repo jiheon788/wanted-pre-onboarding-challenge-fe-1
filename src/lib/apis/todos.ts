@@ -1,4 +1,5 @@
 import { apiClient } from '.';
+import { createTodoParam, getTodoParam, updateTodoParam } from './todos.param';
 
 /**
  * 투두리스트 조회
@@ -21,7 +22,7 @@ export const getTodos = async (accessToken: any) => {
  * @param {*} id
  * @returns
  */
-export const getTodoById = async (accessToken: any, id: string) => {
+export const getTodoById = async ({ accessToken, id }: getTodoParam) => {
   return await apiClient({
     method: 'get',
     url: `/todos/${id}`,
@@ -31,19 +32,6 @@ export const getTodoById = async (accessToken: any, id: string) => {
   });
 };
 
-interface createTodoParam {
-  accessToken: any;
-  title: string;
-  content: string;
-}
-
-/**
- * 투두리스트 작성
- * @param {*} accessToken
- * @param {*} title
- * @param {*} content
- * @returns
- */
 export const createTodo = async ({
   accessToken,
   title,
@@ -62,20 +50,12 @@ export const createTodo = async ({
   });
 };
 
-/**
- * 투두리스트 수정
- * @param {*} accessToken
- * @param {*} title
- * @param {*} content
- * @param {*} id
- * @returns
- */
-export const updateTodo = async (
-  accessToken: any,
-  title: string,
-  content: string,
-  id: string,
-) => {
+export const updateTodo = async ({
+  accessToken,
+  title,
+  content,
+  id,
+}: updateTodoParam) => {
   return await apiClient({
     method: 'put',
     url: `/todos/${id}`,
@@ -89,12 +69,7 @@ export const updateTodo = async (
   });
 };
 
-interface deleteTodoParam {
-  accessToken: any;
-  id: string;
-}
-
-export const deleteTodo = async ({ accessToken, id }: deleteTodoParam) => {
+export const deleteTodo = async ({ accessToken, id }: getTodoParam) => {
   return await apiClient({
     method: 'delete',
     url: `/todos/${id}`,
