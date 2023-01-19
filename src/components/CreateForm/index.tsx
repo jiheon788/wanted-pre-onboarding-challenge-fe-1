@@ -5,6 +5,8 @@ import { CreateContainer, CreateInput, CreateTextArea } from './style';
 import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex';
 import { useMutation } from 'react-query';
 import { queryClient } from 'lib/queryClient';
+import { STORAGE_KEY } from 'constants/token.constant';
+import { KEYS } from 'constants/queries.constant';
 
 interface ICreateFormProps {
   setIsCreate: (isCreate: boolean) => void;
@@ -31,7 +33,7 @@ const CreateForm = ({ setIsCreate, setIndex }: ICreateFormProps) => {
   const { mutate } = useMutation(createTodo);
 
   const onClickCreateBtn = () => {
-    const accessToken = token.getToken('token');
+    const accessToken = token.getToken(STORAGE_KEY);
     const title = todoData.title;
     const content = todoData.content;
 
@@ -39,7 +41,7 @@ const CreateForm = ({ setIsCreate, setIndex }: ICreateFormProps) => {
       { accessToken, title, content },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ['getTodos'] });
+          queryClient.invalidateQueries({ queryKey: [KEYS.GET_TODOS] });
           setIsCreate(false);
           setIndex(0);
         },

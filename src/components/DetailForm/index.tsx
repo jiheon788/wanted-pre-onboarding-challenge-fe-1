@@ -5,7 +5,7 @@ interface IDetailFormProps {
   content: string;
 }
 
-const DetailForm = ({ title = 's', content = '' }: IDetailFormProps) => {
+const DetailForm = ({ title = '', content = '' }: IDetailFormProps) => {
   return (
     <DetailContainer>
       <Title>{title}</Title>

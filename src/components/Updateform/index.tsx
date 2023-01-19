@@ -5,6 +5,8 @@ import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex
 import { useMutation } from 'react-query';
 import { queryClient } from 'lib/queryClient';
 import { useState } from 'react';
+import { KEYS } from 'constants/queries.constant';
+import { STORAGE_KEY } from 'constants/token.constant';
 
 interface IUpdateFormProps {
   id: string;
@@ -30,7 +32,7 @@ const UpdateForm = ({ id, title, content, setIsUpdate }: IUpdateFormProps) => {
   const { mutate } = useMutation(updateTodo);
 
   const onClickUpdateBtn = () => {
-    const accessToken = token.getToken('token');
+    const accessToken = token.getToken(STORAGE_KEY);
     const title = todo.title;
     const content = todo.content;
 
@@ -38,7 +40,7 @@ const UpdateForm = ({ id, title, content, setIsUpdate }: IUpdateFormProps) => {
       { accessToken, title, content, id },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ['getTodos'] });
+          queryClient.invalidateQueries({ queryKey: [KEYS.GET_TODOS] });
           setIsUpdate(false);
         },
       },

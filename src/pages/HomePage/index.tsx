@@ -7,9 +7,10 @@ import TodoList from '../../components/TodoList';
 import { getTodos, deleteTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
 import { MainContainer, Container, ToolBox, Icon } from './style';
-import { ITodo } from 'types/todo.type';
 import { useMutation, useQuery } from 'react-query';
 import { queryClient } from 'lib/queryClient';
+import { KEYS } from 'constants/queries.constant';
+import { STORAGE_KEY } from 'constants/token.constant';
 
 function HomePage() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function HomePage() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!token.getToken('token')) {
+    if (!token.getToken(STORAGE_KEY)) {
       navigate('/auth');
     }
   }, []);
@@ -38,13 +39,13 @@ function HomePage() {
   const { mutate } = useMutation(deleteTodo);
 
   const onClickDeleteBtn = () => {
-    const accessToken = token.getToken('token');
+    const accessToken = token.getToken(STORAGE_KEY);
     const id = data[index].id;
     mutate(
       { accessToken, id },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ['getTodos'] });
+          queryClient.invalidateQueries({ queryKey: [KEYS.GET_TODOS] });
           setIndex(0);
         },
       },
@@ -52,9 +53,9 @@ function HomePage() {
   };
 
   const { status, data, error }: any = useQuery({
-    queryKey: ['getTodos'],
+    queryKey: [KEYS.GET_TODOS],
     queryFn: () =>
-      getTodos(token.getToken('token')).then((response) =>
+      getTodos(token.getToken(STORAGE_KEY)).then((response) =>
         response.data.data.reverse(),
       ),
   });
@@ -69,7 +70,7 @@ function HomePage() {
 
   return (
     <>
-      {token.getToken('token') ? (
+      {token.getToken(STORAGE_KEY) ? (
         <MainContainer>
           <Container>
             {isCreate ? (
@@ -147,7 +148,7 @@ function HomePage() {
 
             <Icon
               onClick={() => {
-                token.removeToken('token');
+                token.removeToken(STORAGE_KEY);
                 window.location.reload();
               }}
               className="material-symbols-outlined"
