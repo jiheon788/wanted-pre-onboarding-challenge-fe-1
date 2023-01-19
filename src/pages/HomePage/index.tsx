@@ -7,22 +7,26 @@ import TodoList from '../../components/TodoList';
 import { getTodos, deleteTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
 import { MainContainer, Container, ToolBox, Icon } from './style';
-import { ITodo } from 'types/todo.type';
+import { useMutation, useQuery } from 'react-query';
+import { queryClient } from 'lib/queryClient';
+import { KEYS } from 'constants/queries.constant';
+import { STORAGE_KEY } from 'constants/token.constant';
 
 function HomePage() {
   const navigate = useNavigate();
   const [isCreate, setIsCreate] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
-  const [todos, setTodos] = useState<ITodo[]>([]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!token.getToken('token')) {
+    if (!token.getToken(STORAGE_KEY)) {
       navigate('/auth');
     }
-
-    console.log(index);
   }, []);
+
+  useEffect(() => {
+    console.log(index);
+  }, [index]);
 
   const onClickAddBtn = () => {
     setIsCreate(!isCreate);
@@ -32,16 +36,41 @@ function HomePage() {
     setIsUpdate(!isUpdate);
   };
 
+  const { mutate } = useMutation(deleteTodo);
+
   const onClickDeleteBtn = () => {
-    deleteTodo(token.getToken('token'), todos[index].id).then((_) => {
-      // loadTodos();
-      setIndex(0);
-    });
+    const accessToken = token.getToken(STORAGE_KEY);
+    const id = data[index].id;
+    mutate(
+      { accessToken, id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: [KEYS.GET_TODOS] });
+          setIndex(0);
+        },
+      },
+    );
   };
+
+  const { status, data, error }: any = useQuery({
+    queryKey: [KEYS.GET_TODOS],
+    queryFn: () =>
+      getTodos(token.getToken(STORAGE_KEY)).then((response) =>
+        response.data.data.reverse(),
+      ),
+  });
+
+  if (status === 'loading') {
+    return <span>Loading...</span>;
+  }
+
+  if (status === 'error') {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <>
-      {token.getToken('token') ? (
+      {token.getToken(STORAGE_KEY) ? (
         <MainContainer>
           <Container>
             {isCreate ? (
@@ -50,26 +79,21 @@ function HomePage() {
               <>
                 {isUpdate ? (
                   <UpdateForm
-                    todos={todos}
-                    setTodos={setTodos}
-                    index={index}
+                    id={data[index].id}
+                    title={data[index].title}
+                    content={data[index].content}
                     setIsUpdate={setIsUpdate}
                   />
                 ) : (
-                  <>
-                    {todos.length > 0 ? (
-                      <DetailForm
-                        title={todos[index].title}
-                        content={todos[index].content}
-                      />
-                    ) : (
-                      <></>
-                    )}
-                  </>
+                  <DetailForm
+                    title={data[index].title}
+                    content={data[index].content}
+                  />
                 )}
               </>
             )}
-            <TodoList setIndex={setIndex} />
+
+            <TodoList data={data} setIndex={setIndex} />
           </Container>
 
           <ToolBox className="tool-box">
@@ -124,7 +148,7 @@ function HomePage() {
 
             <Icon
               onClick={() => {
-                token.removeToken('token');
+                token.removeToken(STORAGE_KEY);
                 window.location.reload();
               }}
               className="material-symbols-outlined"

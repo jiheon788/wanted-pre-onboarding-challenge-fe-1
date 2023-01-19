@@ -2,45 +2,49 @@ import { updateTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
 import { UpdateContainer, UpdateInput, UpdateTextArea } from './style';
 import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex';
-import { ITodo } from 'types/todo.type';
+import { useMutation } from 'react-query';
+import { queryClient } from 'lib/queryClient';
+import { useState } from 'react';
+import { KEYS } from 'constants/queries.constant';
+import { STORAGE_KEY } from 'constants/token.constant';
+
 interface IUpdateFormProps {
-  todos: ITodo[];
-  setTodos: (todos: ITodo[]) => void;
-  index: number;
+  id: string;
+  title: string;
+  content: string;
   setIsUpdate: (isUpdate: boolean) => void;
 }
 
-const UpdateForm = ({
-  todos,
-  setTodos,
-  index,
-  setIsUpdate,
-}: IUpdateFormProps) => {
-  const onChangeFormData =
-    (name: string, index: number) =>
-    (
-      event:
-        | React.ChangeEvent<HTMLInputElement>
-        | React.ChangeEvent<HTMLTextAreaElement>,
-    ) => {
-      let newArr = todos.map((item: ITodo, i: number) => {
-        if (index === i) {
-          return { ...item, [name]: event.target.value };
-        } else {
-          return item;
-        }
-      });
-      setTodos(newArr);
-    };
+const UpdateForm = ({ id, title, content, setIsUpdate }: IUpdateFormProps) => {
+  const [todo, setTodo] = useState({ title, content });
 
-  const onClickSubmitBtn = () => {
-    updateTodo(
-      token.getToken('token'),
-      todos[index].title,
-      todos[index].content,
-      todos[index].id,
+  const onChangeTodo = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setTodo({
+      ...todo,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const { mutate } = useMutation(updateTodo);
+
+  const onClickUpdateBtn = () => {
+    const accessToken = token.getToken(STORAGE_KEY);
+    const title = todo.title;
+    const content = todo.content;
+
+    mutate(
+      { accessToken, title, content, id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: [KEYS.GET_TODOS] });
+          setIsUpdate(false);
+        },
+      },
     );
-    setIsUpdate(false);
   };
 
   return (
@@ -49,17 +53,17 @@ const UpdateForm = ({
         id="title"
         name="title"
         type="title"
-        value={todos[index].title}
-        onChange={onChangeFormData('title', index)}
+        value={todo.title}
+        onChange={onChangeTodo}
       />
       <UpdateTextArea
         id="content"
         name="content"
-        value={todos[index].content}
-        onChange={onChangeFormData('content', index)}
+        value={todo.content}
+        onChange={onChangeTodo}
       />
 
-      <PrimaryCallbackButton title="수정하기" handleEvent={onClickSubmitBtn} />
+      <PrimaryCallbackButton title="수정하기" handleEvent={onClickUpdateBtn} />
     </UpdateContainer>
   );
 };
