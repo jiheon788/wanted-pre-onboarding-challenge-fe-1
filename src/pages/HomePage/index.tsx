@@ -15,7 +15,6 @@ function HomePage() {
   const navigate = useNavigate();
   const [isCreate, setIsCreate] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
-  const [todos, setTodos] = useState<ITodo[]>([]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -23,6 +22,10 @@ function HomePage() {
       navigate('/auth');
     }
   }, []);
+
+  useEffect(() => {
+    console.log(index);
+  }, [index]);
 
   const onClickAddBtn = () => {
     setIsCreate(!isCreate);
@@ -75,9 +78,9 @@ function HomePage() {
               <>
                 {isUpdate ? (
                   <UpdateForm
-                    todos={data}
-                    setTodos={setTodos}
-                    index={index}
+                    id={data[index].id}
+                    title={data[index].title}
+                    content={data[index].content}
                     setIsUpdate={setIsUpdate}
                   />
                 ) : (

@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import { createTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
-import {
-  CreateContainer,
-  CreateInput,
-  CreateTextArea,
-  CreateButton,
-} from './style';
+import { CreateContainer, CreateInput, CreateTextArea } from './style';
 import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex';
 import { useMutation } from 'react-query';
 import { queryClient } from 'lib/queryClient';
@@ -33,8 +28,7 @@ const CreateForm = ({ setIsCreate, setIndex }: ICreateFormProps) => {
     });
   };
 
-  const { mutate, isLoading, isError, error, isSuccess } =
-    useMutation(createTodo);
+  const { mutate } = useMutation(createTodo);
 
   const onClickCreateBtn = () => {
     const accessToken = token.getToken('token');

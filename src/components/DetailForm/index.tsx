@@ -10,7 +10,6 @@ const DetailForm = ({ title = 's', content = '' }: IDetailFormProps) => {
     <DetailContainer>
       <Title>{title}</Title>
       <p>{content}</p>
-      dd
     </DetailContainer>
   );
 };

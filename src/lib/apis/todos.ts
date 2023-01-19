@@ -1,11 +1,6 @@
 import { apiClient } from '.';
 import { createTodoParam, getTodoParam, updateTodoParam } from './todos.param';
 
-/**
- * 투두리스트 조회
- * @param {*} accessToken
- * @returns
- */
 export const getTodos = async (accessToken: any) => {
   return await apiClient({
     method: 'get',
@@ -16,12 +11,6 @@ export const getTodos = async (accessToken: any) => {
   });
 };
 
-/**
- * 상세조회
- * @param {*} accessToken
- * @param {*} id
- * @returns
- */
 export const getTodoById = async ({ accessToken, id }: getTodoParam) => {
   return await apiClient({
     method: 'get',
