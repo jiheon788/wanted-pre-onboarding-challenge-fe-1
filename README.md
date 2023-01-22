@@ -41,7 +41,7 @@
 
 ## 🛠 Tech Stack
 
-`React`, `Typesctipt`, `styled-componets`, `React-Query`
+`React`, `Typesctipt`, `styled-componets`, `React-Query`, `Recoil`
 
 ## 📷 Screenshots
 

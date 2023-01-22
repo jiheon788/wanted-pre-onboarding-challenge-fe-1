@@ -1,3 +1,3 @@
-export const KEYS = {
-  GET_TODOS: 'getTodos',
+export const queryKeys = {
+  TODOS_DATA: 'getTodos',
 };
