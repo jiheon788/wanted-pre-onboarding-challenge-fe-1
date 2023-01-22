@@ -1,12 +1,11 @@
-import { updateTodo } from '../../lib/apis/todos';
 import token from 'lib/token';
 import { UpdateContainer, UpdateInput, UpdateTextArea } from './style';
 import PrimaryCallbackButton from 'components/common/PrimaryCallbackButton/intex';
-import { useMutation } from 'react-query';
 import { queryClient } from 'lib/queryClient';
 import { useState } from 'react';
-import { KEYS } from 'constants/queries.constant';
+import { queryKeys } from 'constants/queries.constant';
 import { STORAGE_KEY } from 'constants/token.constant';
+import { useUpdateTodosMutation } from 'queries/todo.query';
 
 interface IUpdateFormProps {
   id: string;
@@ -29,18 +28,18 @@ const UpdateForm = ({ id, title, content, setIsUpdate }: IUpdateFormProps) => {
     });
   };
 
-  const { mutate } = useMutation(updateTodo);
+  const updateTodosMutation = useUpdateTodosMutation();
 
   const onClickUpdateBtn = () => {
     const accessToken = token.getToken(STORAGE_KEY);
     const title = todo.title;
     const content = todo.content;
 
-    mutate(
+    updateTodosMutation.mutate(
       { accessToken, title, content, id },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: [KEYS.GET_TODOS] });
+          queryClient.invalidateQueries({ queryKey: [queryKeys.TODOS_DATA] });
           setIsUpdate(false);
         },
       },
