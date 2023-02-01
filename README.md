@@ -1,13 +1,10 @@
 ![image](https://user-images.githubusercontent.com/90181028/216120357-f2f96a46-24b7-4e1d-8d70-91c710ba5665.png)
 
-# Todo: CRUD w React Query 
+# CRUD w React Query 
 > 원티드 프리온보딩 프론트엔드 챌린지 1월
 
-
-## Introduction
-
-- [원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제](https://www.wanted.co.kr/events/pre_challenge_fe_5)
-- [API 저장소](https://github.com/starkoora/wanted-pre-onboarding-challenge-fe-1-api)
+- [원티드 프리온보딩 프론트엔드 챌린지](https://www.wanted.co.kr/events/pre_challenge_fe_5)
+- [챌린지 과제 가이드](https://github.com/starkoora/wanted-pre-onboarding-challenge-fe-1-api)
 
 ## Features
 
