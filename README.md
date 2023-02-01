@@ -4,12 +4,12 @@
 > 원티드 프리온보딩 프론트엔드 챌린지 1월
 
 
-## 📢 Introduction
+## Introduction
 
 - [원티드 프리온보딩 챌린지 프론트엔드 코스 사전과제](https://www.wanted.co.kr/events/pre_challenge_fe_5)
 - [API 저장소](https://github.com/starkoora/wanted-pre-onboarding-challenge-fe-1-api)
 
-## ✨ Features
+## Features
 
 ### Assignment 1 - Login / SignUp
 
@@ -41,10 +41,10 @@
 - [ ] 한 페이지 내에서 새로고침 없이 데이터가 정합성을 갖추도록 구현해주세요
 - [x] 수정되는 Todo의 내용이 목록에서도 실시간으로 반영되어야 합니다
 
-## 🛠 Tech Stack
+## Tech Stack
 
 `React`, `Typesctipt`, `styled-componets`, `React-Query`, `Recoil`
 
-## 🔮 Demo
+## Demo
 
 <img src="https://user-images.githubusercontent.com/90181028/210785620-7b11cce1-7bf9-4875-a0c7-64f5ec380973.gif" width="90%" />
