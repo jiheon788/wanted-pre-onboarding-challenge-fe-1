@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/90181028/216119294-e900ed90-151b-463a-ae9f-57c5754e5f77.png)
+![image](https://user-images.githubusercontent.com/90181028/216120357-f2f96a46-24b7-4e1d-8d70-91c710ba5665.png)
 
 # Todo: CRUD w React Query 
 > 원티드 프리온보딩 프론트엔드 챌린지 1월
