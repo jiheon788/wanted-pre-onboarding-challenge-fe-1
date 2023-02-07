@@ -18,7 +18,10 @@ const ToolBox = () => {
     const accessToken = token.getToken(STORAGE_KEY);
     const id = data[index].id;
     deleteTodoMutation.mutate(
-      { accessToken, id },
+      {
+        accessToken,
+        id,
+      },
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: [queryKeys.TODOS_DATA] });

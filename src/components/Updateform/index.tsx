@@ -36,7 +36,12 @@ const UpdateForm = ({ id, title, content, setIsUpdate }: IUpdateFormProps) => {
     const content = todo.content;
 
     updateTodosMutation.mutate(
-      { accessToken, title, content, id },
+      {
+        accessToken,
+        title,
+        content,
+        id,
+      },
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: [queryKeys.TODOS_DATA] });
